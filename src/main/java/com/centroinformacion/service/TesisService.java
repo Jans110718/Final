@@ -1,5 +1,6 @@
 package com.centroinformacion.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,9 @@ public interface TesisService {
 	
 	public List<Tesis> listaPorTituloIgualRegistra(String titulo);
 	public List<Tesis> listaPorTituloIgualActualiza(String titulo, int idTesis);
+	
+	//consultas
+	public abstract List<Tesis> listaConsultaTesis(int estado, int idAlumno,  String titulo, String tema, Date fecDesde, Date fecHasta);
 	
 
 }

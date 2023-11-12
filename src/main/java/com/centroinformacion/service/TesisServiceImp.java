@@ -1,5 +1,6 @@
 package com.centroinformacion.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,13 @@ public class TesisServiceImp implements TesisService{
 	@Override
 	public List<Tesis> listaPorTituloIgualActualiza(String titulo, int idTesis) {
 		return repository.listaPorTituloIgualActualiza(titulo,idTesis);
+	}
+
+	@Override
+	public List<Tesis> listaConsultaTesis(int estado, int idAlumno, String titulo, String tema, Date fecDesde,
+			Date fecHasta) {
+		return repository.listaConsultaTesis(estado, idAlumno, titulo,tema,  fecDesde, fecHasta);
+
 	}
 
 

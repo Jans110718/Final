@@ -1,5 +1,6 @@
 package com.centroinformacion.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -67,5 +68,19 @@ public class Tesis {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idUsuarioActualiza")
 	private Usuario usuarioActualiza;
+	
+	//Atributos para reporte
+	public String getReporteEstado() {
+		return estado == 1 ? "Activo" : "Inactivo";
+	}
+	
+	public String getReporteAlumno() {
+		return alumno.getNombres();
+	}
+	
+	public String getReporteFechaCreacion() {
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		return  sdf.format(fechaCreacion);
+	}
    
 }
