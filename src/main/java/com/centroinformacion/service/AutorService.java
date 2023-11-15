@@ -1,5 +1,6 @@
 package com.centroinformacion.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,9 @@ public interface AutorService {
 	public abstract List<Autor> listaPorNombreApellidoIgual(String nombres, String apellidos); 
 	public abstract List<Autor> listaPorNombreApellidoIgualActualiza(String nombres, String apellidos, int idAutor);
 	public abstract List<Autor> listaPorTelefonoIgual(String telefono, int idAutor); 
+
+	//Consulta
+	public abstract List<Autor> listaConsultaAutor(int estado, int idPais ,int idGrado,  String nomApe, Date fecDesde, Date fecHasta);
 
 }
 
