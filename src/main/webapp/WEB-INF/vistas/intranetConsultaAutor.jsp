@@ -93,9 +93,11 @@
 							<th style="width: 23%">Apellidos</th>
 							<th style="width: 15%">Fecha Nacimiento</th>
 							<th style="width: 10%">Teléfono</th>
-							<th style="width: 8%">Estado</th>
 							<th style="width: 15%">País</th>
 							<th style="width: 15%">Grado</th>
+							 <th style="width: 8%">Estado</th>
+							
+							
 							
 						</tr>
 					</thead>
