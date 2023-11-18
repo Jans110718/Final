@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,16 +72,16 @@ public class TesisConsultarController {
 		log.info(">>> File Reporte >> " + fileDirectory);
 		FileInputStream stream   = new FileInputStream(new File(fileDirectory));
 		
-		/*//PASO 3: PARAMETROS ADICIONALES
-		String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/cherry.jpg");
+		//PASO 3: PARAMETROS ADICIONALES
+		String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/logo.jpg");
 		log.info(">>> File Logo >> " + fileLogo);
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("RUTA_LOGO", fileLogo);*/
+		params.put("RUTA_LOGO", fileLogo);
 		
 		//PASO 4: ENVIAMOS DATASOURCE, DISEÑO Y PARÁMETROS PARA GENERAR EL PDF
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(stream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, dataSource);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,params, dataSource);
 		
 		//PASO 5: ENVIAR EL PDF GENERADO
 		response.setContentType("application/x-pdf");

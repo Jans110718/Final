@@ -164,8 +164,11 @@
 				}, {
 					data : "fechaCreacion"
 				}, {
-					data : "alumno.nombres"
-				}, {
+	                data: function (row) {
+	                    // Concatenar nombre y apellido del alumno
+	                    return row.alumno.nombres + ' ' + row.alumno.apellidos;
+	                }
+	            }, {
 					data : function(row, type, val, meta) {
 						var salida = (row.estado == 1) ? 'Activo' : "Inactivo";
 						return salida;

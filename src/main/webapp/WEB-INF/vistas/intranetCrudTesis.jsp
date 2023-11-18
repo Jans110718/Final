@@ -254,7 +254,12 @@ function agregarGrilla(lista){
 				{data: "titulo"},
 				{data: "tema"},
 				{data: "fechaCreacion"},
-				{data: "alumno.apellidos"},	
+				{
+	                data: function (row) {
+	                    // Concatenar nombre y apellido del alumno
+	                    return row.alumno.nombres + ' ' + row.alumno.apellidos;
+	                }
+	            },
 				{data: function(row, type, val, meta){
 					var salida='<button type="button" style="width: 90px" class="btn btn-info btn-sm" onclick="editar(\''+row.idTesis + '\',\'' + row.titulo +'\',\'' + row.tema  +'\',\'' + row.fechaCreacion + '\',\'' + row.alumno.idAlumno + '\')">Editar</button>';
 					return salida;

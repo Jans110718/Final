@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportesTesis" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="323039db-067a-4455-8ed0-9cccb0f30a15">
+	<parameter name="RUTA_LOGO" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -25,12 +26,16 @@
 					<text><![CDATA[Reporte Tesis]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="410" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="0f6d53d8-25ba-4f62-975c-c43f200f62f8"/>
+					<reportElement x="310" y="70" width="180" height="20" forecolor="#FFFFFF" uuid="0f6d53d8-25ba-4f62-975c-c43f200f62f8"/>
 					<textElement textAlignment="Right">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Autor: Astrid Yovera Tinoco]]></text>
 				</staticText>
+				<image>
+					<reportElement x="510" y="10" width="75" height="73" uuid="fd7fa34b-9c7e-411a-bdb3-f5b8168ff6f3"/>
+					<imageExpression><![CDATA[$P{RUTA_LOGO}]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>

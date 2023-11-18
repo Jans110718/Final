@@ -75,7 +75,7 @@ public class Tesis {
 	}
 	
 	public String getReporteAlumno() {
-		return alumno.getNombres();
+		  return alumno.getNombres() + " " + alumno.getApellidos();
 	}
 	
 	public String getReporteFechaCreacion() {
