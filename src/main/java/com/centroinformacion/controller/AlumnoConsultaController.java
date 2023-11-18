@@ -74,9 +74,9 @@ public class AlumnoConsultaController {
 						"%"+paramNomApe+"%", 
 						paramDesde, 
 						paramHasta,
-						paramCorreo,
-						paramDni,
-						paramTelefono);
+						"%"+paramCorreo+"%",
+						"%"+paramDni+"%",
+						"%"+paramTelefono+"%");
 		
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lstSalida);
 		
