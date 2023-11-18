@@ -31,9 +31,7 @@
 
 <div class="container" style="margin-top: 1%">
 <!-- Agregar aquí -->
-	
-	
-		<h3>Consulta Autor</h3>
+
 		<div class="row" style="margin-top: 3%">
 			<div class="col-md-6">
 				<label class="control-label" for="id_nombres">Nombres y	Apellidos</label> 
