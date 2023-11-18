@@ -31,7 +31,7 @@
 	<title>
 		<band height="112" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="1" y="10" width="552" height="102" forecolor="#000000" backcolor="#215096" uuid="58d7b271-de62-492b-8692-203c8b578c8a"/>
+				<reportElement mode="Opaque" x="1" y="-10" width="552" height="110" forecolor="#000000" backcolor="#004064" uuid="58d7b271-de62-492b-8692-203c8b578c8a"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement x="310" y="82" width="237" height="20" forecolor="#FFFFFF" uuid="0900e172-3805-421a-8283-845dcd7c1cbe"/>
 					<textElement textAlignment="Right">
@@ -47,7 +47,7 @@
 					<text><![CDATA[REPORTE AUTOR]]></text>
 				</staticText>
 				<image>
-					<reportElement x="20" y="12" width="80" height="78" uuid="b3d7914b-59bf-45ad-a7f3-2cf73faf6044"/>
+					<reportElement x="20" y="16" width="70" height="70" uuid="78455dae-4003-436a-bfa2-0e2f6ba7531c"/>
 					<imageExpression><![CDATA[$P{Autor_Logo}]]></imageExpression>
 				</image>
 			</frame>
@@ -59,56 +59,56 @@
 	<columnHeader>
 		<band height="34" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="1" y="4" width="46" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="4ff67759-3f4e-4dc1-a91d-4ca9d95d7616"/>
+				<reportElement mode="Opaque" x="1" y="4" width="46" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="4ff67759-3f4e-4dc1-a91d-4ca9d95d7616"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="47" y="4" width="80" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="0aaf7af7-3f98-431c-8363-674d2beb4a11"/>
+				<reportElement mode="Opaque" x="47" y="4" width="80" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="0aaf7af7-3f98-431c-8363-674d2beb4a11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="127" y="4" width="86" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="ea959e84-cc2c-4b38-97c5-18a6761037b0"/>
+				<reportElement mode="Opaque" x="127" y="4" width="86" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="ea959e84-cc2c-4b38-97c5-18a6761037b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[apellidos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="213" y="4" width="84" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="0153e890-b19a-4509-8f66-3966aae580cf"/>
+				<reportElement mode="Opaque" x="213" y="4" width="84" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="0153e890-b19a-4509-8f66-3966aae580cf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Nacimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="297" y="4" width="54" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="d8808bca-cfe5-4ace-a37d-5ceffa28b388"/>
+				<reportElement mode="Opaque" x="297" y="4" width="54" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="d8808bca-cfe5-4ace-a37d-5ceffa28b388"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[telefono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="351" y="4" width="67" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="dbc81011-0809-43c2-89ed-4818e47ef8b1"/>
+				<reportElement mode="Opaque" x="351" y="4" width="67" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="dbc81011-0809-43c2-89ed-4818e47ef8b1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pais]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="417" y="4" width="65" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="f259e058-0c17-4eb3-9a45-36441ed8f996"/>
+				<reportElement mode="Opaque" x="417" y="4" width="65" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="f259e058-0c17-4eb3-9a45-36441ed8f996"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Grado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="480" y="4" width="75" height="30" forecolor="#FFFFFF" backcolor="#215096" uuid="1e474cc4-cb97-47c3-b52c-fc92f527161a"/>
+				<reportElement mode="Opaque" x="480" y="4" width="75" height="30" forecolor="#FFFFFF" backcolor="#004064" uuid="1e474cc4-cb97-47c3-b52c-fc92f527161a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

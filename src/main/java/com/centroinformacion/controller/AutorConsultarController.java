@@ -93,7 +93,7 @@ public class AutorConsultarController {
 				
 				
 				//PASO 3: Parametros adicionales
-				String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/logo.jpg");
+				String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/cibertec.jpg");
 				log.info(">>> File Logo >> " + fileLogo);
 				
 				HashMap<String, Object> params = new HashMap<String, Object>();
@@ -107,7 +107,7 @@ public class AutorConsultarController {
 				
 				//PASO 5: Enviar el PDF generado
 				response.setContentType("application/x-pdf");
-			    response.addHeader("Content-disposition", "attachment; filename= ReporteAutor.pdf");
+			    response.addHeader("Content-disposition", "attachment; filename=ReporteAutor.pdf");
 
 				OutputStream outStream = response.getOutputStream();
 				JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
