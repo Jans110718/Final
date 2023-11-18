@@ -3,6 +3,7 @@ package com.centroinformacion.service;
  * @author Yheremi Ramos
  */
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,5 +63,13 @@ public class LibroServiceImp implements LibroService {
 	public Libro actualizarLibro(Libro obj) {
 		return repository.save(obj);
 	}
+
+	@Override
+	public List<Libro> listaConsultaLibro(int estado, int idCategoriaLibro, int idTipoLibro, String titulo,
+			int fecDesde, int fecHasta) {
+		return repository.listaConsultaLibro(estado, idCategoriaLibro, idTipoLibro, titulo, fecDesde, fecHasta);
+	}
+
+
 	
 }
