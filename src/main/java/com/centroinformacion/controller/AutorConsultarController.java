@@ -97,7 +97,7 @@ public class AutorConsultarController {
 				log.info(">>> File Logo >> " + fileLogo);
 				
 				HashMap<String, Object> params = new HashMap<String, Object>();
-				params.put("logo", fileLogo);
+				params.put("Autor_Logo", fileLogo);
 				
 				
 				//PASO 4: Enviamos dataSource, diseño y parámetros para generar el PDF
