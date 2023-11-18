@@ -1,5 +1,6 @@
 package com.centroinformacion.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +59,12 @@ public class AlumnoServiceImp implements AlumnoService {
 	@Override
 	public List<Alumno> listaPorDniIgualActualiza(String dni, int idAlumno) {
 		return repository.listaAlumnoDniIgualActualiza(dni, idAlumno);
+	}
+
+	@Override
+	public List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo, String nomApe, Date fecDesde,
+			Date fecHasta, String correo, String dni, String telefono) {
+		return repository.listaConsultaAlumno(estado, idPais, idDataCatalogo, nomApe, fecDesde, fecHasta, correo, dni, telefono);
 	}
 	
 	

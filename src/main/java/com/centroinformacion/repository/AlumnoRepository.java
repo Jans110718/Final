@@ -1,5 +1,6 @@
 package com.centroinformacion.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,4 +28,19 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	
 	@Query("select a from Alumno a where a.dni = ?1 and a.idAlumno != ?2")
 	public List<Alumno> listaAlumnoDniIgualActualiza(String dni, int idAlumno);
+	
+	//Consulta
+	@Query("select a from Alumno a where "
+			+ "( a.estado = ?1 ) and "
+			+ "( ?2 = -1  or a.pais.idPais = ?2 ) and "
+			+ "( ?3 = -1  or a.modalidad.idDataCatalogo = ?3 ) and "
+			+ "( a.nombres like ?4 or a.apellidos like ?4 ) and "
+			+ "( a.fechaNacimiento >= ?5 ) and "
+			+ "( a.fechaNacimiento <= ?6 ) and "
+			+ "( a.correo like ?7 ) and "
+			+ "( a.dni like ?8 ) and "
+			+ "( a.telefono like ?9 )") 
+	public abstract List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo, String nomApe, Date fecDesde, Date fecHasta, String correo, String dni, String telefono);
+		
+
 }
