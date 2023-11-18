@@ -1,5 +1,4 @@
 package com.centroinformacion.repository;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -34,9 +33,10 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	@Query("select e from Libro e where "
 			+ "( e.estado = ?1)  and "
 			+ "( ?2 = -1  or e.categoriaLibro.idDataCatalogo = ?2  or e.tipoLibro.idDataCatalogo = ?3) and "
-			+ "( e.titulo like ?4 ) and"
-			+ "( e.anio >= ?5 ) and"
-			+ "( e.anio <= ?6 )") 
-	public abstract List<Libro> listaConsultaLibro(int estado, int idCategoriaLibro, int idTipoLibro, String titulo ,int fecDesde, int fecHasta);
+			+ "( e.titulo like ?4 ) and "
+			+ "( e.serie like ?5 ) and "
+			+ "( e.anio >= ?6 ) and "
+			+ "( e.anio <= ?7 )") 
+	public abstract List<Libro> listaConsultaLibro(int estado, int idCategoriaLibro, int idTipoLibro, String titulo,String serie ,int fecDesde, int fecHasta);
 	
 }

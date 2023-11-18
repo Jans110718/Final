@@ -19,6 +19,13 @@ public interface LibroService {
 	public abstract List<Libro> listaPorTituloActualizar(String titulo,int idLibro);
 	public abstract List<Libro> listaPorSerieActualizar(String serie, int idLibro);
  	
-	public abstract List<Libro> listaConsultaLibro(int estado, int idCategoriaLibro, int idTipoLibro, String titulo,int fecDesde, int fecHasta );
+	public abstract List<Libro> listaConsultaLibro(
+			int estado, 
+			int idCategoriaLibro, 
+			int idTipoLibro, 
+			String titulo, 
+			String serie,
+			int fecDesde, 
+			int fecHasta );
 }
 	
