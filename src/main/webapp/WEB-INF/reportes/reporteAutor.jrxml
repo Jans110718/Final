@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAutor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
 	<property name="template.type" value="columnar"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -20,10 +20,10 @@
 	<field name="nombres" class="java.lang.String"/>
 	<field name="idAutor" class="java.lang.Integer"/>
 	<field name="apellidos" class="java.lang.String"/>
-	<field name="fechaNacimiento" class="java.lang.String"/>
-	<field name="estado" class="java.lang.String"/>
-	<field name="pais" class="java.lang.String"/>
-	<field name="grado" class="java.lang.String"/>
+	<field name="reporteFechaNacimiento" class="java.lang.String"/>
+	<field name="reporteEstado" class="java.lang.String"/>
+	<field name="reprotePais" class="java.lang.String"/>
+	<field name="reporteGrado" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -106,7 +106,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="226" y="30" width="81" height="30" uuid="a64bb25d-5176-43b2-b334-98b7eaea92fe"/>
-				<textFieldExpression><![CDATA[$F{fechaNacimiento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{reporteFechaNacimiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="226" y="0" width="84" height="30" forecolor="#FFFFFF" backcolor="#030202" uuid="0b351645-3135-422f-ac76-375a5984f9bd"/>
@@ -131,7 +131,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="387" y="30" width="60" height="30" uuid="ed6d747d-d0f6-41d7-977c-338de3c98a8c"/>
-				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{reporteEstado}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="387" y="0" width="73" height="30" forecolor="#FFFFFF" backcolor="#030202" uuid="a8699c41-86e2-460a-8e56-16b91ea0750c"/>
@@ -142,7 +142,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="448" y="30" width="55" height="30" uuid="ed5a8303-875e-45de-a231-65859bd5c0a3"/>
-				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{reprotePais}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="448" y="0" width="55" height="30" forecolor="#FFFFFF" backcolor="#030202" uuid="10a56e6a-81ea-4291-8c1c-62899fb46eb0"/>
@@ -153,7 +153,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="503" y="30" width="50" height="30" uuid="438055bb-4b5d-4662-b201-7ba15275e9fb"/>
-				<textFieldExpression><![CDATA[$F{grado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{reporteGrado}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="503" y="0" width="54" height="30" forecolor="#FFFFFF" backcolor="#030202" uuid="83a47c19-a4c7-4a1c-8fc2-6d65d90d668c"/>
