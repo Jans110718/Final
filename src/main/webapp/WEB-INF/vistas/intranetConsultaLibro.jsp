@@ -26,6 +26,7 @@
 <body>
 <jsp:include page="intranetCabecera.jsp" />
 
+<form id="id_form">
 <div class="container" style="margin-top: 4%">
 	<h4>Consulta Libro</h4>
 		<div class="row" style="margin-top: 3%">
@@ -50,6 +51,14 @@
 			<input class="form-control" type="text" id="id_hasta" name="paramHasta" placeholder="Ingrese Año"  maxlength="4">
 		</div>
 	</div>
+	
+	<div class="row" style="margin-top: 2%">
+	<div class="col-md-6">
+			<label class="control-label" for="id_serie">Serie</label> 
+			<input class="form-control" type="text" id="id_serie"	name="serie">
+	</div>
+	</div>
+	
 	<div class="row" style="margin-top: 2%">
 		<div class="col-md-6">
 			<label class="control-label" for="id_CategoriaLibro">Categoria</label> 
@@ -95,6 +104,7 @@
 	
 </div>
 
+</form>
 <script type="text/javascript">
 
 $.getJSON("listaCategoriaDeLibro", {}, function(data) {
@@ -113,12 +123,18 @@ $.getJSON("listaTipoLibroRevista", {}, function(data) {
 	});
 });
 
+$("#id_btn_reporte").click(function(){
+	$("#id_form").attr("action", "reporteLibroPdf");
+	$("#id_form").submit();
+});
+
 
 $("#id_btn_filtra").click(function(){
 	var varEstado = $("#id_estado").is(':checked') ? 1 : 0;  
 	var varCategoria = $("#id_CategoriaLibro").val();
 	var varTipo = $("#id_TipoLibro").val();
 	var varTitulo = $("#id_titulo").val();
+	var varSerie = $("#id_serie").val();
 	var varFecDesde = $("#id_desde").val() == '' ?'1900' : $("#id_desde").val();
 	var varFecHasta = $("#id_hasta").val() == '' ?'9999' : $("#id_hasta").val();
 	
@@ -126,6 +142,7 @@ $("#id_btn_filtra").click(function(){
 	console.log(">> varCategoria >> " + varCategoria );
 	console.log(">> varTipo >> " + varTipo );
 	console.log(">> varTitulo >> " + varTitulo );
+	console.log(">> varSerie >> " + varSerie );
 	console.log(">> varFecDesde >> " + varFecDesde );
 	console.log(">> varFecHasta >> " + varFecHasta );
 	
@@ -139,6 +156,7 @@ $("#id_btn_filtra").click(function(){
 		"idCategoriaLibro": varCategoria,
 		"idTipoLibro": varTipo, 
 		"titulo": varTitulo, 
+		"serie": varSerie,
 		"desde": varFecDesde, 
 		"hasta": varFecHasta }, function(data){
 		agregarGrilla(data);

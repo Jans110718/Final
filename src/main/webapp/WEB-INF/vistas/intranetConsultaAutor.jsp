@@ -133,9 +133,6 @@ $.getJSON("listaGradoAutor", {}, function(data){
 $("#id_btn_reporte").click(function(){
 	$("#id_form").attr("action", "reporteAutorPdf");
 	$("#id_form").submit();
-	
-	
-	
 });
 
 
