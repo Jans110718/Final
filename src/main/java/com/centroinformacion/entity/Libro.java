@@ -76,12 +76,12 @@ public class Libro {
 		return estado == 1? "Activo": "Inactivo";
 	}
 	
-	public int getReporteCategoria() {
-		return  categoriaLibro.getIdDataCatalogo();
+	public String getReporteCategoria() {
+		return  categoriaLibro.getDescripcion();
 	}
 	
-	public int getReporteTipo() {
-		return  tipoLibro.getIdDataCatalogo() ;
+	public String getReporteTipo() {
+		return  tipoLibro.getDescripcion() ;
 	}
 
 }
