@@ -35,8 +35,8 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 			+ "( ?2 = -1  or e.categoriaLibro.idDataCatalogo = ?2  or e.tipoLibro.idDataCatalogo = ?3) and "
 			+ "( e.titulo like ?4 ) and "
 			+ "( e.serie like ?5 ) and "
-			+ "( e.anio >= ?6 ) and "
-			+ "( e.anio <= ?7 )") 
-	public abstract List<Libro> listaConsultaLibro(int estado, int idCategoriaLibro, int idTipoLibro, String titulo,String serie ,int fecDesde, int fecHasta);
+			+ "(  ?6 = -1 or e.anio = ?6 ) ") 
+	public abstract List<Libro> listaConsultaLibro(
+			int estado, int idCategoriaLibro, int idTipoLibro, String titulo,String serie,int anio);
 	
 }

@@ -25,7 +25,6 @@ public interface LibroService {
 			int idTipoLibro, 
 			String titulo, 
 			String serie,
-			int fecDesde, 
-			int fecHasta );
+			int anio);
 }
 	
