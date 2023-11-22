@@ -1,4 +1,5 @@
 package com.centroinformacion.service;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,12 @@ public class EditorialServiceImp implements EditorialService {
 
 	}
 
-	
-	
-	
+
+
+	@Override
+	public List<Editorial> listaConsultaEditorial(int estado, int idPais, String razonSocial, String direccion,
+	String ruc, Date fecDesde, Date fecHasta) {
+		
+	return repository.listaConsultaEditorial(estado, idPais, razonSocial, direccion, ruc, fecDesde, fecHasta);	
+	}
 	}
