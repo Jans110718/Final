@@ -53,7 +53,7 @@ public class SalaConsultaController {
 
 			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lstSalida);
 //PASO 2: OBTENER EL ARCHIVO QUE CONTIENE EL DISEÑO DEL REPORTE 
-			String fileDirectory = request.getServletContext().getRealPath("/WEB-INF/reportes/ReportesSala.jasper");
+			String fileDirectory = request.getServletContext().getRealPath("/WEB-INF/reportes/reportesSala.jasper");
 			log.info(">>> File Reporte >> " + fileDirectory);
 			FileInputStream stream = new FileInputStream(new File(fileDirectory));
 			String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/logo.jpg");
