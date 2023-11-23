@@ -44,8 +44,8 @@ public class SalaConsultaController {
 			int paramtipoSala) {
 
 		// Asignar valores predeterminados si los parámetros son nulos o vacíos
-		paramPiso = (paramPiso == null || paramPiso.equals("")) ? -1 : paramPiso;
-		paramnumAlumnos = (paramnumAlumnos == null || paramnumAlumnos.equals("")) ? -1 : paramnumAlumnos;
+		paramPiso = (paramPiso == null) ? -1 : paramPiso;
+		paramnumAlumnos = (paramnumAlumnos == null) ? -1 : paramnumAlumnos;
 		try {
 //PASO 1: OBTENER EL DATASOURCE QUE VA A GENERAR EL REPORTE 
 			List<Sala> lstSalida = salaService.listaConsultaSala(paramEstado ? 1 : 0, paramNumero, paramPiso,

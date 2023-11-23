@@ -3,17 +3,14 @@ package com.centroinformacion.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.centroinformacion.entity.Autor;
 import com.centroinformacion.entity.Libro;
 import com.centroinformacion.service.LibroService;
 
