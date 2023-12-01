@@ -20,90 +20,103 @@
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
 <link rel="stylesheet" href="css/bootstrapValidator.css"/>
-
 <title>Intranet</title>
 </head>
 <body>
 
 <jsp:include page="intranetCabecera.jsp" />
-<div class="container" style="margin-top: 4%"><h4>Prestamo Libro</h4></div>
+<div class="container" style="margin-top: 4%"><h4>Préstamo de Libro</h4></div>
 
 <div class="container" style="margin-top: 1%">
-	<form id="id_form" accept-charset="UTF-8" action="boleta" class="form-horizontal" method="post">
-			<div class="panel-group" id="steps">
-				<div class="panel panel-default">
-					<div class="panel-heading">Alumno</div>
-						<div class="panel-body">
-							<div class="form-group col-md-4">
-								<div class="col-lg-4">
-									<button type="button" id="id_btnCliente" data-toggle='modal' class='btn btn-primary' style="width: 170px">BUSCA ALUMNO</button>
-									<input type="hidden" name="idCliente" id="id_cliente_id" class="form-control" value="-1"/>
-								</div>
-							</div> 
-							
-							<div class="form-group col-md-4">
-								<label class="col-lg-2 control-label">Nombre</label>
-								<div class="col-lg-8">
-									<input type="text"id="id_cliente_nombre"  class="form-control"	readonly="readonly"/>
-								</div>
-							</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">Libros</div>
-						<div class="panel-body">
-							<div class="form-group  col-md-4" >
-								<div class="col-lg-2">
-									<button type="button" id="id_btnProducto" data-toggle='modal' class='btn btn-primary' style="width: 170px">BUSCA PRODUCTO</button>
-									<input type="hidden" name="idProducto" id="id_producto_id" class="form-control" value="-1"/>									
-								</div>
-							</div>
-							<div class="form-group  col-md-4">
-								<label class="col-lg-3 control-label">Nombre</label>
-								<div class="col-lg-8">
-									<input type="text" name="nombreProducto" id="id_producto_nombre" class="form-control" readonly="readonly"/>
-								</div>
-							</div>
-								
-							
-				</div>
-			</div>
-			
-			
-			<div class="panel panel-default">
-					<div class="panel-heading">Detalle del Prestamo</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<div class="col-lg-9 col-lg-offset-3">
-									<button type="button" id="id_btnAgregar" class="btn btn-primary" style="width: 170px">AGREGA PRODUCTO</button>
-									<button type="button" id="id_btnRegistrar"  class="btn btn-primary" style="width: 170px">REGISTRA BOLETA</button>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-lg-12">
-									<table id="id_table_boleta" class="table table-striped table-bordered">
-										<thead>
-											<tr>
-												<th style="width: 5%">Código</th>
-												<th style="width: 30%">Nombre</th>
-									
-												<th style="width: 5%"></th>
-											</tr>
-										</thead>
-										<tbody id="id_table_boleta_body">
-												 
-										</tbody>
-										
-									</table>
-								</div>
-							</div>
-					</div>
-				</div>
+<!-- Agregar aquí -->
+
+<form id="id_form" accept-charset="UTF-8" action="boleta" class="form-horizontal" method="post">
+
+    <div class="panel-group" id="steps">
+
+        <!-- Panel 1: Prestamo -->
+        <div class="panel panel-default">
+            <div class="panel-heading">PRESTAMO</div>
+            <div class="panel-body">
+
+                <div class="form-group col-md-5">
+                    <label class="col-lg-2 control-label">Alumno</label>
+                    <div class="col-lg-8">
+                        <input type="text" id="id_alumno_nombre" class="form-control" readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="col-lg-6">
+                        <button type="button" id="id_btnAlumno" data-toggle='modal' class='btn btn-primary' style="width: 170px">BUSCA ALUMNO</button>
+                        <input type="hidden" name="idAlumno" id="id_Alumno_id" class="form-control" value="-1"/>
+                    </div>
+                </div>
+
+                <div class="form-group  col-sm-3">
+                    <label class="control-label" for="id_fechaDevolucion">Fecha de devolucion:</label>
+                    <input class="form-control" type="date" id="id_fechaDevolucion" name="fechaDevolucion" placeholder="Ingrese la fecha de devolucion" maxlength="100">
+                </div>
+
+                <div class="form-group  col-md-5">
+                    <label class="col-lg-2 control-label">Libros</label>
+                    <div class="col-lg-8">
+                        <input type="text" name="titulo" id="id_libro_nombre" class="form-control" readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="form-group  col-md-4" >
+                    <div class="col-lg-6">
+                        <button type="button" id="id_btnLibro" data-toggle='modal' class='btn btn-primary' style="width: 170px">BUSCA LIBROS</button>
+                        <input type="hidden" name="idLibro" id="id_Libro_id" class="form-control" value="-1"/>									
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-5">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <button type="button" id="id_btnAgregar" class="btn btn-primary" style="width: 170px">AGREGA PRODUCTO</button>
+                            <button type="button" id="id_btnRegistrar"  class="btn btn-primary" style="width: 170px">REGISTRA BOLETA</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Panel 2: Detalle del Prestamo -->
+        <div class="panel panel-default">
+            <div class="panel-heading">Detalle del Prestamo</div>
+            <div class="panel-body">
+               
+                
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <table id="id_table_boleta" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                
+                                   <th style="width: 10%">Código</th>
+									<th style="width: 35%">Alumno</th>
+									<th style="width: 30%">Libro</th>
+									<th style="width: 25%">F. Devolucion</th>
+                               
+                               
+                                </tr>
+                            </thead>
+                            <tbody id="id_table_boleta_body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 <!-- El formulario de busqueda de Alumno (Modal) -->
 
-  	 <div class="modal fade" id="idBuscaCliente" >
+  	 <div class="modal fade" id="idBuscaAlumno" >
 			<div class="modal-dialog" style="width: 60%">
 
 				<div class="modal-content">
@@ -119,12 +132,12 @@
 														Alumno 
 													</label>   
 													<div class="col-lg-5">
-														<input id="id_txtCliente" class="form-control" name="cliente" type="text" />
+														<input id="id_txtAlumno" class="form-control" name="Alumno" type="text" />
 													</div>
 											</div>
 											<div class="form-group">
 												<div class="col-lg-12">
-												<table id="id_table_cliente" class="table table-striped table-bordered">
+												<table id="id_table_alumno" class="table table-striped table-bordered">
 														<thead>
 															<tr>
 																<th style="width: 15%">Id</th>
@@ -148,7 +161,7 @@
 
 <!-- El formulario de busqueda de Libro (Modal) -->
 
-  	 <div class="modal fade" id="idBuscaProducto" >
+  	 <div class="modal fade" id="idBuscaLibro" >
 			<div class="modal-dialog" style="width: 60%">
 
 				<div class="modal-content">
@@ -164,19 +177,20 @@
 														Producto 
 													</label>   
 													<div class="col-lg-5">
-														<input id="id_txtProducto" class="form-control" name="producto" type="text" />
+														<input id="id_txtLibro" class="form-control" name="producto" type="text" />
 													</div>
 											</div>
 											<div class="form-group">
 												<div class="col-lg-12">
-												<table id="id_table_producto" class="table table-striped table-bordered" >
+												<table id="id_table_libro" class="table table-striped table-bordered" >
 														<thead>
 															<tr>
-																<th style="width: 15%">Id</th>
-																<th style="width: 45%">Nombre</th>
-																<th style="width: 15%">Precio</th>
-																<th style="width: 15%">Stock</th>
-																<th style="width: 10%"></th>
+																<th style="width: 5%">Id Libro</th>
+																<th style="width: 20%">Titulo</th>
+															   <th style="width: 20%">Año</th>
+																<th style="width: 20%">Serie</th>
+																<th style="width: 20%">Estado</th>
+																	<th style="width: 5%"></th>
 															</tr>
 														</thead>
 														<tbody>
@@ -191,8 +205,8 @@
 			</div>
 			</div>
 		</div>
-		
-		
+
+
 	<!-- Modal Mensaje -->	
 		  <div class="modal fade" id="idMensaje" >
 			<div class="modal-dialog" style="width: 60%">
@@ -203,50 +217,48 @@
 					<h4><span class="glyphicon glyphicon-ok-sign"></span> Mensaje</h4>
 				</div>
 				<div  id="idMensajeTexto" class="modal-body" style="padding: 30px 30px;align-content: center;">
-					
+
 			    </div>
 			</div>
 			</div>
 		</div>
-		
+
 </form>
+
 </div>
 
 
 
 
 <script type="text/javascript">
-
+<!-- Agregar aquí -->
 	$(document).ready(function() {
-
-		//Se añade los clientes a la tabla
-		$.getJSON("listaSeleccion",{}, function (data){
+		//Se añade los alumnos a la tabla
+		$.getJSON("",{}, function (data){
 			$.each(data, function(index, item){
-				$('#id_table_boleta_body').append("<tr><td>" +item.idProducto + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idProducto +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");                     
+				$('#id_table_boleta_body').append("<tr><td>" +item.idAlumno + "</td><td>" +item.nombres + "</td><td>" +item.apellidos + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idAlumno +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
 			});
 		});
 		
 	});
-
-	//Al pulsar el botón cliente
-	$("#id_btnCliente").click(function (){
-		muestraCliente();
-		$("#idBuscaCliente").modal("show");
+	//Al pulsar el botón alumno
+	$("#id_btnAlumno").click(function (){
+		muestraAlumno();
+		$("#idBuscaAlumno").modal("show");
 	});
-
 	//Al pulsar el botón producto
-	$("#id_btnProducto").click(function (){
+	$("#id_btnLibro").click(function (){
 		muestraProducto();
-		$("#idBuscaProducto").modal("show");
+		$("#idBuscaLibro").modal("show");
+	});
+	
+	//Al escribir en la caja de texto del alumno
+	$("#id_txtAlumno").keyup( function (e){
+		muestraAlumno();
 	});
 	
 	//Al escribir en la caja de texto del cliente
-	$("#id_txtCliente").keyup( function (e){
-		muestraCliente();
-	});
-	
-	//Al escribir en la caja de texto del cliente
-	$("#id_txtProducto").keyup( function (e){
+	$("#id_txtLibro").keyup( function (e){
 		muestraProducto();
 	});
 	
@@ -254,13 +266,10 @@
 	$(document).on("keypress", "form", function(event) { 
 	    return event.keyCode != 13;
 	});
-
 	
 	//Al pulsar el botón agregar
 	$("#id_btnAgregar").click(function (){
-		var var_pro = $("#id_producto_id").val();
-		var var_can = $("#id_producto_cantidad").val();
-		var var_stk = $("#id_producto_stock").val();
+		var var_pro = $("#id_libro_id").val();
 		
 		//Validar duplicados
 		var yaExiste = false;
@@ -271,19 +280,7 @@
 		});
 		
 		if ( var_pro == '-1' ){
-			$("#idMensajeTexto").text("Seleccione un Producto");
-			$("#idMensaje").modal("show");
-		}else if ( var_can == '' ){
-			$("#idMensajeTexto").text("Agrege una cantidad");
-			$("#idMensaje").modal("show");
-		}else if ( $.isNumeric( var_can ) == false ){
-			$("#idMensajeTexto").text("La cantidad debe ser númerico");
-			$("#idMensaje").modal("show");
-		}else if (parseInt(var_can) <= 0 ){
-			$("#idMensajeTexto").text("La cantidad debe ser postivo");
-			$("#idMensaje").modal("show");
-		}else if (parseInt(var_can)> parseInt(var_stk)){
-			$("#idMensajeTexto").text("La cantidad no puede ser superior al Stock");
+			$("#idMensajeTexto").text("Seleccione un Libro");
 			$("#idMensaje").modal("show");
 		}else if (yaExiste){
 			$("#idMensajeTexto").text("Existe el producto elegido");
@@ -349,9 +346,7 @@
 			$("#idMensajeTexto").text("Seleccione un producto");
 			$("#idMensaje").modal("show");
 		}else{
-
 			var jsonParam = {"idCliente":var_cli,"nombre":var_nom_com};
-
 			$.ajax({
 				url:  'registraBoleta',
 				type: 'POST',
@@ -379,40 +374,37 @@
 	});
 	
 	
-	function muestraCliente(){
-		var var_cliente = $("#id_txtCliente").val();
-
+	function muestraAlumno(){
+		var var_cliente = $("#id_txtAlumno").val();
 		//limpiar la tabla
-		$("#id_table_cliente tbody").empty();
+		$("#id_table_alumno tbody").empty();
 		
 		//Se añade los clientes a la tabla
-		$.getJSON("cargaCliente",{"filtro":var_cliente}, function (data){
+		$.getJSON("cargaAlumno",{"filtro":var_cliente}, function (data){
 			$.each(data, function(index, item){
-				$('#id_table_cliente').append("<tr><td>" +item.idCliente + "</td><td>" +item.nombre + "</td><td>" +item.apellido + "</td><td><button type='button' class='btn btn-default' aria-label='Left Align' onclick=\"f_seleccione_cliente('"+ item.idCliente+"','"+ item.nombre+"','"+ item.apellido+"');\" ><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button></td></tr>");
+				$('#id_table_alumno').append("<tr><td>" +item.idAlumno
+						+ "</td><td>" +item.nombres + "</td><td>" +item.apellidos + "</td><td><button type='button' class='btn btn-default' aria-label='Left Align' onclick=\"f_seleccione_cliente('"+ item.idCliente+"','"+ item.nombre+"','"+ item.apellido+"');\" ><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button></td></tr>");
 			});
 		});
 	}
-
 	function muestraProducto(){
-		var var_producto = $("#id_txtProducto").val();
-
+		var var_producto = $("#id_txtLibro").val();
 		//limpiar la tabla
-		$("#id_table_producto tbody").empty();
+		$("#id_table_libro tbody").empty();
 		
 		//Se añade los clientes a la tabla
-		$.getJSON("cargaProducto",{"filtro":var_producto}, function (data){
+		$.getJSON("cargaLibro",{"filtro":var_producto}, function (data){
 			$.each(data, function(index, item){
-				$('#id_table_producto').append("<tr><td>" +item.idProducto + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.stock + "</td><td><button type='button' class='btn btn-default' aria-label='Left Align' onclick=\"f_seleccione_producto('"+ item.idProducto+"','"+ item.nombre+"','"+ item.precio+"','"+ item.stock+"');\" ><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button></td></tr>");
+				$('#id_table_libro').append("<tr><td>" +item.idLibro + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.stock + "</td><td><button type='button' class='btn btn-default' aria-label='Left Align' onclick=\"f_seleccione_producto('"+ item.idProducto+"','"+ item.nombre+"','"+ item.precio+"','"+ item.stock+"');\" ><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button></td></tr>");
 			});
 		});
 	}
-
 	//Al pulsar selecciona cliente
-	function f_seleccione_cliente(id,nombre,apellido){
-		$("#id_cliente_id").val(id);
-		$("#id_cliente_nombre").val(nombre);
-		$("#id_cliente_apellido").val(apellido);
-		$("#idBuscaCliente").modal("hide");
+	function f_seleccione_cliente(idAlumno,nombres,apellidos){
+		$("#id_alumno_id").val(id);
+		$("#id_alumno_nombre").val(nombres);
+		$("#id_alumno_apellido").val(apellidos);
+		$("#idBuscaAlumno").modal("hide");
 	}
 	
 	//Al pulsar selecciona producto
@@ -421,7 +413,7 @@
 		$("#id_producto_nombre").val(nombre);
 		$("#id_producto_precio").val(precio);
 		$("#id_producto_stock").val(stock);
-		$("#idBuscaProducto").modal("hide");
+		$("#idBuscaLibro").modal("hide");
 	}
 	
 	//Al pulsar el botón eliminar
@@ -435,7 +427,6 @@
 				$('#id_table_boleta_body').append("<tr><td>" +item.idProducto + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idProducto +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td><tr>");
 			});
 		});
-
 		//limpia las cajas de texto
 		$("#id_producto_id").val("-1");
 		$("#id_producto_nombre").val("");
@@ -453,13 +444,8 @@
 		return patron.test(te); // 6
 	}
 	
-
 	
-</script>
 
-
+</script>   		
 </body>
 </html>
-
-
-

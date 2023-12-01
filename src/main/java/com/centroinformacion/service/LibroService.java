@@ -3,6 +3,8 @@ package com.centroinformacion.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+
 import com.centroinformacion.entity.Libro;
 
 public interface LibroService {
@@ -26,5 +28,14 @@ public interface LibroService {
 			String titulo, 
 			String serie,
 			int anio);
+	
+	
+	/*Transaccion*/
+	//consultas
+	
+
+	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+
 }
+
 	

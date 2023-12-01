@@ -1,6 +1,7 @@
 package com.centroinformacion.repository;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -39,4 +40,16 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	public abstract List<Libro> listaConsultaLibro(
 			int estado, int idCategoriaLibro, int idTipoLibro, String titulo,String serie,int anio);
 	
+	/*Permnite hacer un filtro de busqueda mediante el buscador en el modal buscar libbro*/
+	@Query("select p from Libro p where "
+		    + "( p.titulo like ?1)  and "
+		    + "( p.anio = ?2 ) and"
+		    + "( p.serie like ?3 )and"
+		    + "( p.estado = ?4) "
+		    )
+	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+
 }
+
+
+
