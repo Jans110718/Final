@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.centroinformacion.entity.Alumno;
 import com.centroinformacion.entity.DataCatalogo;
 import com.centroinformacion.entity.Pais;
+import com.centroinformacion.entity.Sala;
 import com.centroinformacion.service.AlumnoService;
 import com.centroinformacion.service.DataCatalogoService;
 import com.centroinformacion.service.PaisService;
+import com.centroinformacion.service.SalaService;
 import com.centroinformacion.util.AppSettings;
 @Controller
 public class UtilController {
@@ -26,6 +28,8 @@ public class UtilController {
 	@Autowired
 	private AlumnoService alumnoService;
 	
+	@Autowired
+	private SalaService salaService;
 
 	@GetMapping("/listaPais")
 	@ResponseBody
@@ -37,6 +41,12 @@ public class UtilController {
 	@ResponseBody
 	public List<Alumno> listaAlumno() {
 		return alumnoService.listaTodos();
+	}
+	
+	@GetMapping("/listaSala")
+	@ResponseBody
+	public List<Sala> listaSala() {
+		return salaService.listaSalaDisponibles();
 	}
 
 	@GetMapping("/listaCategoriaDeLibro")

@@ -83,4 +83,14 @@ public class SalaServiceImp implements SalaService {
 
 	}
 
+	@Override
+	public List<Sala> listaSalaDisponibles() {
+		return repository.listaSalaDisponibles();
+	}
+
+	@Override
+	public Sala actualizarSala(Sala sala) {
+		return repository.save(sala);
+	}
+
 }

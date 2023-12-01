@@ -25,5 +25,9 @@ public interface SalaRepository extends JpaRepository<Sala, Integer> {
 			int idTipoSala
 
 	);
+	
+	@Query("select x from Sala x where x.estado = 1")
+	public abstract List<Sala> listaSalaDisponibles();
+	
 
 }
