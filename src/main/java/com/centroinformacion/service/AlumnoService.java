@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+
 import com.centroinformacion.entity.Alumno;
 
 public interface AlumnoService {
@@ -23,4 +25,15 @@ public interface AlumnoService {
 	
 	//consultas
 	public abstract List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo,  String nomApe, Date fecDesde, Date fecHasta, String correo, String dni, String telefono);
+
+
+	//Para la consulta
+
+
+	public abstract List<Alumno> listaAlumno(String filtro, Pageable pageable);
+
+
 }
+
+
+

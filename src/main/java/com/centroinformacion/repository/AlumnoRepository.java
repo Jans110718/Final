@@ -3,6 +3,7 @@ package com.centroinformacion.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -43,4 +44,23 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	public abstract List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo, String nomApe, Date fecDesde, Date fecHasta, String correo, String dni, String telefono);
 		
 
+	/*Transacción*/
+	
+	
+	/*@Query("select a from Alumno a where "
+			+ "(a.nombres like ?1 or a.apellidos like ?1)")
+public abstract List<Alumno> listaConsultarAlumno(String nombres,String apellidos);
+*/
+
+
+/*Para hacer la busca tanto por nbombre y apellido en la tabla modal al seleccionr boton buscar alumno*/
+
+	
+	@Query("select x from Alumno x where x.nombres like ?1 or x.apellidos like ?1")
+	public abstract List<Alumno> listaAlumno (String filtro, Pageable pageable);
+
 }
+	
+	
+	
+

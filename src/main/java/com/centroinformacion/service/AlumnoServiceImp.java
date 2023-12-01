@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.centroinformacion.entity.Alumno;
@@ -61,11 +62,30 @@ public class AlumnoServiceImp implements AlumnoService {
 		return repository.listaAlumnoDniIgualActualiza(dni, idAlumno);
 	}
 
+	
+	
 	@Override
 	public List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo, String nomApe, Date fecDesde,
 			Date fecHasta, String correo, String dni, String telefono) {
 		return repository.listaConsultaAlumno(estado, idPais, idDataCatalogo, nomApe, fecDesde, fecHasta, correo, dni, telefono);
 	}
 	
+	/*Transaccion Alumno*/
+
+	
+	
+	
+	@Override
+	public List<Alumno> listaAlumno(String filtro, Pageable pageable) {
+		return repository.listaAlumno(filtro, pageable);
+	}
+
+
+
+	
 	
 }
+
+	
+	
+	
