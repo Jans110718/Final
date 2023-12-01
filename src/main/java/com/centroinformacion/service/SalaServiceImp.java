@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.centroinformacion.entity.ReservaSala;
 import com.centroinformacion.entity.Sala;
 import com.centroinformacion.repository.SalaRepository;
 
@@ -81,6 +83,17 @@ public class SalaServiceImp implements SalaService {
 
 		return repository.listaConsultaSala(estado, numero, piso, numAlumnos, recursos, idSede, idTipoSala);
 
+	}
+
+	@Override
+	public List<Sala> traerSalasDisponibles() {
+		return repository.traerSalasDisponibles();
+	}
+
+	@Override
+	public ReservaSala insertaSala(ReservaSala obj) {
+
+		return repository.save(obj);
 	}
 
 }

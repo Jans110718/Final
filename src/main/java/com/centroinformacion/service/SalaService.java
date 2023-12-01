@@ -2,6 +2,8 @@ package com.centroinformacion.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.centroinformacion.entity.ReservaSala;
 import com.centroinformacion.entity.Sala;
 
 public interface SalaService {
@@ -15,4 +17,8 @@ public interface SalaService {
 	public abstract List<Sala> listaPorNumeroIgualActualiza(String numero, int id);
 	public abstract List<Sala> listaConsultaSala(int estado, String numero, int piso, int numAlumnos, String recursos,
 			int idSede, int idTipoSala);
+	
+	public abstract List<Sala> traerSalasDisponibles();
+	public abstract ReservaSala insertaSala(ReservaSala obj);
+
 }
