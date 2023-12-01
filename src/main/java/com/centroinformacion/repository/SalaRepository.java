@@ -28,9 +28,6 @@ public interface SalaRepository extends JpaRepository<Sala, Integer> {
 
 	);
 	
-	@Query("Select r from Sala r where r.estado = 1")
-	public abstract List<Sala> traerSalasDisponibles();
-	
-	///xtra
-	public abstract ReservaSala save(ReservaSala obj);
+	@Query("select x from Sala x where x.estado = 1")
+	public abstract List<Sala> listaSalaDisponibles();
 }

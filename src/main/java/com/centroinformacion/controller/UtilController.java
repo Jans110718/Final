@@ -30,6 +30,8 @@ public class UtilController {
 	@Autowired
 	private SalaService salaService;
 	
+	@Autowired
+	private SalaService salaService;
 
 	@GetMapping("/listaPais")
 	@ResponseBody
@@ -43,10 +45,10 @@ public class UtilController {
 		return alumnoService.listaTodos();
 	}
 	
-	@ResponseBody
 	@GetMapping("/listaSala")
-	public List<Sala> listaSala(){
-		return  salaService.traerSalasDisponibles();
+	@ResponseBody
+	public List<Sala> listaSala() {
+		return salaService.listaSalaDisponibles();
 	}
 
 	@GetMapping("/listaCategoriaDeLibro")

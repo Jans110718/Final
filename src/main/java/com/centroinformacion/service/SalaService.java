@@ -18,7 +18,9 @@ public interface SalaService {
 	public abstract List<Sala> listaConsultaSala(int estado, String numero, int piso, int numAlumnos, String recursos,
 			int idSede, int idTipoSala);
 	
-	public abstract List<Sala> traerSalasDisponibles();
-	public abstract ReservaSala insertaSala(ReservaSala obj);
+
+	public abstract List<Sala> listaSalaDisponibles();
+	public Sala actualizarSala(Sala sala);
+
 
 }
