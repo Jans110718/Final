@@ -27,6 +27,8 @@ public class UtilController {
 	
 	@Autowired
 	private AlumnoService alumnoService;
+	@Autowired
+	private SalaService salaService;
 	
 	@Autowired
 	private SalaService salaService;

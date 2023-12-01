@@ -3,6 +3,7 @@ package com.centroinformacion.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.centroinformacion.entity.ReservaSala;
 import com.centroinformacion.entity.Sala;
 
 public interface SalaService {

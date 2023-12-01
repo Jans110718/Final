@@ -55,5 +55,4 @@ public class Sala {
 		return estado == 1 ? "Activo" : "Inactivo";
 
 	}
-
 }
