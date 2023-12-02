@@ -25,62 +25,59 @@
 </head>
 <body>
 <jsp:include page="intranetCabecera.jsp" />
-<div class="container" style="margin-top: 4%"><h4>Asignación de Rol a Usuario</h4></div>
+<div class="container" style="margin-top: 4%"><h4>AsignaciÃ³n de Rol a Usuario</h4></div>
 
-<div class="container" style="margin-top: 1%">
 <form id="id_form">
-	<div class="form-group col-sm-6">
-		<div class="col-sm-2">
-			<label class="control-label" for="id_usuario">Usuario</label>
+	<div class="container" style="margin-top: 1%">
+		<div class="row" style="margin-top: 1%">
+			<div class="col-md-6">
+				<label class="control-label" for="id_usuario">Usuario</label> 
+				<select id="id_usuario" name="idUsuario" class='form-control'>
+					<option value=""> [Seleccione] </option>
+				</select>
+			</div>
+		</div>	
+		<div class="row" style="margin-top: 1%">
+			<div class="col-md-6">
+				<label class="control-label" for="id_rol">Rol</label> 
+				<select id="id_rol" name="idRol" class='form-control'>
+					<option value=""> [Seleccione] </option>
+				</select>
+			</div>
 		</div>
-		<div class="col-sm-10">
-			<select class='form-control' id="id_usuario" name="idUsuario">
-				<option  value="">[Seleccione]</option>    
-			</select>
-	    </div>
-	</div>
-	<div class="form-group col-sm-6">
-		<div class="col-sm-2">
-			<label class="control-label" for="id_rol">Rol</label>
+		<div class="row" style="margin-top: 3%">
+			<div class="col-md-12" align="center">
+				<button type="button" class="btn btn-primary" id="id_btn_agregar">Agregar</button>
+			</div>
 		</div>
-		<div class="col-sm-10">
-			<select class="form-control" id="id_rol" name="idRol" >
-				<option  value="">[Seleccione]</option>
-			</select>
+		<div class="row" style="margin-top: 3%">
+			<div class="col-md-12">
+				<table id="id_table" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th style="width: 40%">CÃ³digo</th>
+							<th style="width: 40%">Rol</th>
+							<th style="width: 20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	<div class="row" style="margin-top: 2%" align="center"	>
-		<button class="btn btn-primary" id="id_btn_agregar" type="button">Agregar</button>
-	</div>
-	<div class="row" style="margin-top: 2%"> 
-		<div class="col-md-12">
-				<div class="content" >
-					<table id="id_table" class="table table-striped table-bordered" >
-						<thead>
-							<tr>
-								<th style="width: 5%" >Código</th>
-								<th style="width: 80%">Rol</th>
-								<th style="width: 15%">Eliminar rol</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>	
-		</div>
-	</div>
-</form>	
 </div>
+</form>
 
 <script type="text/javascript">
-$.getJSON("listaUser", {}, function(data){
+$.getJSON("listaUsuario", {}, function(data){
 	$.each(data, function(i,item){
 		$("#id_usuario").append("<option value="+item.idUsuario +">"+ item.nombreCompleto +"</option>");
 	});
 });
 
-$.getJSON("listaRol", {}, function(data){
-	$.each(data, function(i, item){
-		$("#id_rol").append("<option value="+item.idRol+">"+item.nombre+"</option>")
+$.getJSON("listaRoles", {}, function(data){
+	$.each(data, function(index,item){
+		$("#id_rol").append("<option value="+item.idRol +">"+ item.nombre +"</option>");
 	});
 });
 
@@ -91,7 +88,24 @@ $("#id_usuario").change(function(){
 	});
 });
 
+$("#id_btn_agregar").click(function(){
+	$.ajax({
+        type: "POST",
+        url: "registraRol", 
+        data: $('#id_form').serialize(),
+        success: function(data){
+      	  agregarGrilla(data.lista, data.usuario);
+      	  mostrarMensaje(data.mensaje);
+        },
+        error: function(){
+      	  mostrarMensaje(MSG_ERROR);
+        }
+      });
+});
+
 function agregarGrilla(lista, var_usuario){
+	console.log(lista);
+	
 	 $('#id_table').DataTable().clear();
 	 $('#id_table').DataTable().destroy();
 	 $('#id_table').DataTable({
@@ -102,7 +116,7 @@ function agregarGrilla(lista, var_usuario){
 			pageLength: 10,
 			lengthChange: false,
 			columns:[
-				{data: "idRol"},
+				{data: "idRol"},	
 				{data: "nombre"},
 				{data: function(row, type, val, meta){
 				    var salida='<button type="button" style="width: 90px" class="btn btn-warning btn-sm" onclick="accionEliminar(\'' + var_usuario +'\',\'' + row.idRol +'\')">Eliminar</button>';
@@ -112,38 +126,13 @@ function agregarGrilla(lista, var_usuario){
 	    });
 }
 
-$("#id_btn_agregar").click(function(){
-	var validator = $('#id_form').data('bootstrapValidator');
-	validator.validate();
-	
-	 if (validator.isValid()) {
-		$.ajax({
-	        type: "POST",
-	        url: "registraRol", 
-	        data: $('#id_form').serialize(), //------------> ENVÌA como variable "data" toda la informaciòn recogida en el formulario del .jsp
-	        success: function(data){
-	      	  agregarGrilla(
-	      			  data.lista, 
-	      			  data.usuario);
-	      	  mostrarMensaje(data.mensaje);
-	        },
-	        error: function(){
-	      	  mostrarMensaje(MSG_ERROR);
-	        }
-	      });
-	}
-});
-
-
 function accionEliminar(idUsuario, idRol){
 	$.ajax({
         type: "POST",
         url: "eliminaRol", 
-        data: {"idUsuario": idUsuario, "idRol": idRol}, //ENVÌA idUsuario e idRol para que el controller los coja como paràmetros
+        data: {"idUsuario": idUsuario, "idRol": idRol},
         success: function(data){
-      	  agregarGrilla(
-      			  data.lista, 
-      			  data.usuario);
+      	  agregarGrilla(data.lista, data.usuario);
       	  mostrarMensaje(data.mensaje);
         },
         error: function(){
@@ -152,35 +141,6 @@ function accionEliminar(idUsuario, idRol){
      });
 }
 
-
-$(document).ready(function() {
-    $('#id_form').bootstrapValidator({
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        		idUsuario:{
-                    selector: "#id_usuario",
-                    validators:{
-                        notEmpty: {
-                             message: 'Seleccione un usuario'
-                        }
-                    }
-                },
-                idRol:{
-                    selector: "#id_rol",
-                    validators:{
-                        notEmpty: {
-                             message: 'Seleccione un rol'
-                        }
-                    }
-                }
-        }   
-    });
-});
 </script>   		
 </body>
 </html>
