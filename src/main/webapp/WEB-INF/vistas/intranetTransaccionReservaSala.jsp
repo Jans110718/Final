@@ -199,7 +199,7 @@
 						}
 					}
 				},
-				fechaSeparacion : {
+				fechaReserva : {
 					selector : "#id_fechaReserva",
 					validators : {
 						notEmpty : {
