@@ -27,6 +27,11 @@ public interface AutorService {
 
 	//Consulta
 	public abstract List<Autor> listaConsultaAutor(int estado, int idPais ,int idGrado,  String nomApe, Date fecDesde, Date fecHasta);
+	
+	
+	
+	//SIFUENTES
+	public abstract List<Autor> listaAutor();
 
 }
 

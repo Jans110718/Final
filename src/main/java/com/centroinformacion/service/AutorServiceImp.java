@@ -67,6 +67,12 @@ public class AutorServiceImp implements AutorService{
 
 	}
 	
+//SIFUENTES
+	@Override
+	public List<Autor> listaAutor(){
+		return repository.findAll();
+}
+	
 
 	
 	

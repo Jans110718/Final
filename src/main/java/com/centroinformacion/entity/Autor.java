@@ -120,6 +120,11 @@ public class Autor {
 	}
 	
 	
+	//SIFUENTES
+	public String getNombreCompleto() {
+		return nombres.concat(" ").concat(apellidos);
+	}
+   
 	
 	
 	
