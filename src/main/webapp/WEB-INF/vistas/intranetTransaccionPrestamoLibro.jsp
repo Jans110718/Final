@@ -25,7 +25,7 @@
 <body>
 
 <jsp:include page="intranetCabecera.jsp" />
-<div class="container" style="margin-top: 4%"><h4>Préstamo de Libro</h4></div>
+<div class="container" style="margin-top: 4%"><h4>Prestamo de Libro</h4></div>
 
 <div class="container" style="margin-top: 1%">
 <!-- Agregar aquí -->
@@ -309,7 +309,7 @@ $("#id_btnAgregar").click(function (){
 			//limpiar la tabla
 			$("#id_table_boleta_body").empty();
 				
-			var jsonParam = {"idProducto":var_pro,"nombre":var_nom,"precio":var_pre,"cantidad":var_can};
+			var jsonParam = {"idLibro":,idLibro,"titulo":var_lib,"idAlumno":var_Alum, "fechaPrestamo":var_fech };
 			
 			$.ajax({
 				url:  'agregarSeleccion',
@@ -320,11 +320,11 @@ $("#id_btnAgregar").click(function (){
 					console.log(data);
 					if(data != null){
 						$.each(data, function(index, item){
-							$('#id_table_boleta_body').append("<tr><td>" +item.idProducto + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idProducto +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
+							$('#id_table_boleta_body').append("<tr><td>" +item.idLibro + "</td><td>" + vra_lib + "</td><td>" + var_Alum + "</td><td>" + var_fech + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idLibro +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
 						});
 						
 					}else
-						swal("Error al agregar la selección del producto","","error");
+						swal("Error al agregar la selección del Libro","","error");
 						return false;
 					},
 				error: function (jqXhr) { 
@@ -334,12 +334,15 @@ $("#id_btnAgregar").click(function (){
 			   
 				
 			//limpia las cajas de texto
-			$("#id_libro_id").val("-1");
-			$("#id_titulo").val("");
+			$("#id_alumno_nombre").val("");
+			$("#id_libro_nombre").val("");
+			$("#id_fechaPrestamo").val("");
+
 		}
 	});
 
 	
+
 
 	
 	//Al pulsar el botón agregar
@@ -347,8 +350,8 @@ $("#id_btnAgregar").click(function (){
 	var var_alu= $("#id_alumno_nombre").val();
 	var var_ape = $("#id_libro_nombre").val();
 	var var_nom = $("#id_fechaPrestamo").val();
-	var var_idLibro=  idLibro;
-	var var_idAlumno=  idAlumno;
+	var var_idLibro=  item.idLibro;
+	var var_idAlumno=  item.idAlumno;
 
 	var var_count = 0;
 	$("#id_table_boleta_body tr").each(function() {

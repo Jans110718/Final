@@ -4,6 +4,6 @@ import com.centroinformacion.entity.Prestamo;
 
 public interface PrestamoService {
 
-	public abstract Prestamo insertaBoleta(Prestamo obj);
+	public abstract Prestamo insertaPrestamo(Prestamo obj);
 
 }
