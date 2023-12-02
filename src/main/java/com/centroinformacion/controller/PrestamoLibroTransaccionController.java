@@ -35,12 +35,15 @@ public class PrestamoLibroTransaccionController{
 
 	@Autowired
 	private LibroService libroService;
-
+	
 	@Autowired
 	private PrestamoService prestamoService;
-	
+
+	/*@Autowired
+	private PrestamoService prestamoService;
+	*/
 	//Los productos seleccionados
-		private List<Prestamo> seleccionados = new ArrayList<Prestamo>();
+		private List<Prestamo> prestamos = new ArrayList<Prestamo>();
 		
 		
 	@RequestMapping("/cargaAlumno")
@@ -67,72 +70,50 @@ public class PrestamoLibroTransaccionController{
 	@RequestMapping("/listaSeleccion")
 	@ResponseBody()
 	public List<Prestamo> lista(){
-		return seleccionados; 
+		return prestamos; 
 	}
 	
 	@RequestMapping("/agregarSeleccion")
 	@ResponseBody()
 	public List<Prestamo> agregar(Prestamo obj){
-		seleccionados.add(obj);
-		return seleccionados; 
+		prestamos.add(obj);
+		return prestamos; 
 	}
-	
 	
 	@RequestMapping("/eliminaSeleccion")
 	@ResponseBody()
 	public List<Prestamo> eliminar(int idPrestamo){
-		seleccionados.removeIf( x -> x.getIdPrestamo() == idPrestamo);
-		return seleccionados; 
+		prestamos.removeIf( x -> x.getIdPrestamo() == idPrestamo);
+		return prestamos; 
 	}
 	
-	/*@RequestMapping("/registraBoleta")
+	@RequestMapping("/registraPrestamo")
 	@ResponseBody()
-	public Mensaje boleta(Alumno cliente, HttpSession session) {
+	public Mensaje Prestamo(Alumno alumno, HttpSession session) {
 		Usuario objUsuario = (Usuario)session.getAttribute("objUsuario");
 		Mensaje objMensaje = new Mensaje();
 		
 		List<PrestamoHasLibro> detalles = new ArrayList<PrestamoHasLibro>();
-		for (Prestamo seleccion : seleccionados) {
+		for (Prestamo seleccion : prestamos) {
 			
 			PrestamoHasLibroPK pk = new PrestamoHasLibroPK();
 			pk.setIdPrestamo(seleccion.getIdPrestamo());
+			PrestamoHasLibro phl = new PrestamoHasLibro();
+			phl.setPrestamoHasLibroPK(pk);
 			
-			PrestamoHasLibro psb = new PrestamoHasLibro();
-			psb.setPrecio(seleccion.getPrecio());
-			psb.setCantidad(seleccion.getCantidad());
-			psb.setProductoHasBoletaPK(pk);
-			
-			detalles.add(psb);
+			detalles.add(phl);
 		}
 		
-		Boleta obj = new Boleta();
-		obj.setCliente(cliente);
-		obj.setDetallesBoleta(detalles);
+		Prestamo obj = new Prestamo();
+		obj.setAlumno(alumno);
 		obj.setUsuario(objUsuario);
 		
-		Boleta objBoleta =  boletaService.insertaBoleta(obj);
-		
-		String salida = "-1";
-		
-		if (objBoleta != null) {
-				salida = "Se generó la boleta con código N° : " + objBoleta.getIdBoleta() + "<br><br>";
-				salida += "Cliente: " + objBoleta.getCliente().getNombre() + "<br><br>";
-				salida += "<table class=\"table\"><tr><td>Producto</td><td>Precio</td><td>Cantidad</td><td>Subtotal</td></tr>";
-				double monto = 0;
-				for (Prestamo x : seleccionados) {
-					salida += "<tr><td>"  + x.getNombre() 
-							+ "</td><td>" + x.getPrecio() 
-							+ "</td><td>" + x.getCantidad()
-							+ "</td><td>" + x.getTotalParcial() + "</td></tr>";
-					monto += x.getCantidad() * x.getPrecio();
-				}
-				salida += "</table><br>";
-				salida += "Monto a pagar : " + monto;
-
-				seleccionados.clear();
-				objMensaje.setTexto(salida);	
-		}
+	
 		
 		return objMensaje;
-	}*/
+	}
+	
+	
+	
+	
 }
