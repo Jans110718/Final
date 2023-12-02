@@ -7,11 +7,9 @@ import com.centroinformacion.entity.Opcion;
 import com.centroinformacion.entity.Rol;
 import com.centroinformacion.entity.RolHasOpcion;
 import com.centroinformacion.entity.RolHasOpcionPK;
-import com.centroinformacion.entity.Rol;
 
 public interface RolService {
 
-	public abstract List<Rol> listaRol();
 	public abstract List<Rol> listaRol();
 	public abstract List<Opcion> traerOpcionDeRol(int idRol);
 	

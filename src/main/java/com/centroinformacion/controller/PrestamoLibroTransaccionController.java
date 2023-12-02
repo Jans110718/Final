@@ -16,6 +16,7 @@ import com.centroinformacion.entity.Mensaje;
 import com.centroinformacion.entity.Prestamo;
 import com.centroinformacion.entity.PrestamoHasLibro;
 import com.centroinformacion.entity.PrestamoHasLibroPK;
+import com.centroinformacion.entity.Seleccion;
 import com.centroinformacion.entity.Usuario;
 import com.centroinformacion.service.AlumnoService;
 import com.centroinformacion.service.LibroService;
@@ -28,92 +29,84 @@ import lombok.Setter;
 @Getter
 @Setter
 @Controller
-public class PrestamoLibroTransaccionController{
+public class PrestamoLibroTransaccionController {
 
 	@Autowired
 	private AlumnoService alumnoService;
 
 	@Autowired
 	private LibroService libroService;
-	
+
 	@Autowired
 	private PrestamoService prestamoService;
 
-	/*@Autowired
-	private PrestamoService prestamoService;
-	*/
-	//Los productos seleccionados
-		private List<Prestamo> prestamos = new ArrayList<Prestamo>();
-		
-		
+	/*
+	 * @Autowired private PrestamoService prestamoService;
+	 */
+	// Los productos seleccionados
+	private List<Seleccion> prestamos = new ArrayList<Seleccion>();
+
 	@RequestMapping("/cargaAlumno")
 	@ResponseBody()
-	public List<Alumno> listaAlumno(String filtro){
+	public List<Alumno> listaAlumno(String filtro) {
 		int page = 0;
 		int size = 5;
 		Pageable pageable = PageRequest.of(page, size);
-		List<Alumno> lstSalida = alumnoService.listaAlumno("%"+filtro+"%", pageable);
-		return lstSalida;		
+		List<Alumno> lstSalida = alumnoService.listaAlumno("%" + filtro + "%", pageable);
+		return lstSalida;
 	}
-		
+
 	@RequestMapping("/listaLibro")
 	@ResponseBody()
-	public List<Libro> listaLibro(String filtro){
+	public List<Libro> listaLibro(String filtro) {
 		int page = 0;
 		int size = 5;
 		Pageable pageable = PageRequest.of(page, size);
-		List<Libro> lstSalida = libroService.listaLibro("%"+filtro+"%", pageable);
-		return lstSalida;		
+		List<Libro> lstSalida = libroService.listaLibro("%" + filtro + "%", pageable);
+		return lstSalida;
 	}
-	
 
 	@RequestMapping("/listaSeleccion")
 	@ResponseBody()
-	public List<Prestamo> lista(){
-		return prestamos; 
+	public List<Seleccion> lista() {
+		return prestamos;
 	}
-	
+
 	@RequestMapping("/agregarSeleccion")
 	@ResponseBody()
-	public List<Prestamo> agregar(Prestamo obj){
+	public List<Seleccion> agregar(Seleccion obj) {
 		prestamos.add(obj);
-		return prestamos; 
+		return prestamos;
 	}
-	
+
 	@RequestMapping("/eliminaSeleccion")
 	@ResponseBody()
-	public List<Prestamo> eliminar(int idPrestamo){
-		prestamos.removeIf( x -> x.getIdPrestamo() == idPrestamo);
-		return prestamos; 
+	public List<Seleccion> eliminar(int idLibro) {
+		prestamos.removeIf(x -> x.getIdLibro() == idLibro);
+		return prestamos;
 	}
-	
+
 	@RequestMapping("/registraPrestamo")
 	@ResponseBody()
 	public Mensaje Prestamo(Alumno alumno, HttpSession session) {
-		Usuario objUsuario = (Usuario)session.getAttribute("objUsuario");
+		Usuario objUsuario = (Usuario) session.getAttribute("objUsuario");
 		Mensaje objMensaje = new Mensaje();
-		
+
 		List<PrestamoHasLibro> detalles = new ArrayList<PrestamoHasLibro>();
-		for (Prestamo seleccion : prestamos) {
-			
+		for (Seleccion seleccion : prestamos) {
+
 			PrestamoHasLibroPK pk = new PrestamoHasLibroPK();
-			pk.setIdPrestamo(seleccion.getIdPrestamo());
 			PrestamoHasLibro phl = new PrestamoHasLibro();
 			phl.setPrestamoHasLibroPK(pk);
-			
+
 			detalles.add(phl);
 		}
-		
+
 		Prestamo obj = new Prestamo();
 		obj.setAlumno(alumno);
 		obj.setUsuario(objUsuario);
-		
-	
-		
+
 		return objMensaje;
 	}
-	
-	
-	
-	
+
 }
