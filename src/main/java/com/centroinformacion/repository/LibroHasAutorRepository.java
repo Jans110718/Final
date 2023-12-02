@@ -7,5 +7,4 @@ import com.centroinformacion.entity.LibroHasAutorPK;
 
 public interface LibroHasAutorRepository 
  extends JpaRepository<LibroHasAutor, LibroHasAutorPK> {
-
 }
