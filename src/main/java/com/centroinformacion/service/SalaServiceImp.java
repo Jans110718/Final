@@ -93,14 +93,7 @@ public class SalaServiceImp implements SalaService {
 	@Override
 	public Sala actualizarSala(Sala sala) {
 		return repository.save(sala);
-	public List<Sala> traerSalasDisponibles() {
-		return repository.traerSalasDisponibles();
-	}
-
-	@Override
-	public ReservaSala insertaSala(ReservaSala obj) {
-
-		return repository.save(obj);
-	}
-
+		
+}	
 }
+
