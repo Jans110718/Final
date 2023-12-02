@@ -41,8 +41,8 @@
 				<div class="form-group  col-sm-12">
 					<label class="control-label" for="id_horaInicio">Hora
 						Inicio</label> <input class="form-control" type="time" id="id_horaInicio"
-						name="horaInicio" placeholder="Ingrese la hora de inicio Creaciï¿½n"
-						maxlength="100">
+						name="horaInicio"
+						placeholder="Ingrese la hora de inicio Creaciï¿½n" maxlength="100">
 				</div>
 				<div class="form-group  col-sm-12">
 					<label class="control-label" for="id_horaFin">Hora Fin</label> <input
@@ -92,50 +92,55 @@
 		});
 
 		function actualizarComboBox() {
-			// Limpia el combobox antes de actualizarlo
-			$("#id_sala").empty();
-			// Realiza la solicitud para obtener la lista actualizada de salas disponible
-			$.getJSON("listaSala", {}, function(data) {
+		    // Limpia el combo box de salas antes de actualizarlo
+		    $("#id_sala").empty();
+		    
+		    // Agrega una opción predeterminada para el combo box de salas
+		    $("#id_sala").append("<option value='' selected>[Seleccione]</option>");
 
-				$.each(data, function(i, item) {
-					$("#id_sala").append(
-							"<option value=" + item.idSala + ">" + item.numero
-									+ "</option>"
+		    // Realiza la solicitud para obtener la lista actualizada de salas disponibles
+		    $.getJSON("listaSala", {}, function(data) {
+		        // Itera sobre la lista de salas y agrega las opciones al combo box de salas
+		        $.each(data, function(i, item) {
+		            $("#id_sala").append(
+		                "<option value=" + item.idSala + ">" + item.numero + "</option>"
+		            );
+		        });
+		    });
 
-					);
+		    // Limpia el combo box de alumnos antes de actualizarlo
+		    $("#id_alumno").empty();
 
-				});
+		    // Agrega una opción predeterminada para el combo box de alumnos
+		    $("#id_alumno").append("<option value='' selected>[Seleccione]</option>");
 
-			});
-
+		    // Realiza la solicitud para obtener la lista actualizada de alumnos
+		    $.getJSON("listaAlumno", {}, function(data) {
+		        // Itera sobre la lista de alumnos y agrega las opciones al combo box de alumnos
+		        $.each(data, function(index, item) {
+		            // Se crea una variable que combina los campos "nombres" y "apellidos" para formar el nombre completo
+		            var nombreCompleto = item.nombres + " " + item.apellidos;
+		            $("#id_alumno").append(
+		                "<option value=" + item.idAlumno + ">" + nombreCompleto + "</option>"
+		            );
+		        });
+		    });
 		}
 
+
 		$("#id_registrar").click(function() {
-
 			var validator = $('#id_form').data('bootstrapValidator');
-
 			validator.validate();
-
 			if (validator.isValid()) {
-
 				$.ajax({
-
 					type : "POST",
-
 					url : "registraReservaSala",
-
 					data : $('#id_form').serialize(),
-
 					success : function(data) {
-
 						mostrarMensaje(data.MENSAJE);
-
 						validator.resetForm();
-
 						limpiarFormulario();
-
 						actualizarComboBox();
-
 					},
 
 					error : function() {
@@ -154,7 +159,7 @@
 			$('#id_alumno').empty();
 			$('#id_horaInicio').val('');
 			$('#id_horaFin').val('');
-			$('#id_fechaSeparacion').val('');
+			$('#id_fechaReserva').val('');
 			$('#id_tipoSala').val('');
 			$('#id_sala').empty();
 		}
@@ -199,7 +204,7 @@
 						}
 					}
 				},
-				fechaSeparacion : {
+				fechaReserva : {
 					selector : "#id_fechaReserva",
 					validators : {
 						notEmpty : {
