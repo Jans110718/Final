@@ -92,4 +92,12 @@ public class Alumno {
 		return sdf.format(fechaNacimiento); 
 	}
 
+	
+	/*Obtener bombre y apellidos*/
+	
+	public String getNombreCompleto() {
+		return nombres.concat(" ").concat(apellidos);
+	}
+	
+	
 }

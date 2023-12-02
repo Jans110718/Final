@@ -5,6 +5,8 @@ package com.centroinformacion.repository;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.centroinformacion.entity.ReservaSala;
 import com.centroinformacion.entity.Sala;
 
 public interface SalaRepository extends JpaRepository<Sala, Integer> {
@@ -25,5 +27,7 @@ public interface SalaRepository extends JpaRepository<Sala, Integer> {
 			int idTipoSala
 
 	);
-
+	
+	@Query("select x from Sala x where x.estado = 1")
+	public abstract List<Sala> listaSalaDisponibles();
 }

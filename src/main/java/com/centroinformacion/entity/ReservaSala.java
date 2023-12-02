@@ -1,6 +1,12 @@
 package com.centroinformacion.entity;
 
+import java.time.LocalTime;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,10 +18,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,18 +30,21 @@ public class ReservaSala {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSeparacion;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fechaSeparacion;
+	private Date fechaReserva;
 	
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fechaInicio;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime horaInicio;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fechaFin;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime horaFin;
 
 	private int estado;
 	
@@ -51,7 +56,7 @@ public class ReservaSala {
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idSala")
-	private Alumno sala;
+	private Sala sala;
 	
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -59,9 +64,8 @@ public class ReservaSala {
 	@JoinColumn(name = "idUsuarioRegistro")
 	private Usuario usuarioRegistro;
 	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUsuarioActualiza")
-	private Usuario usuarioActualiza;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaRegistro;
 	
 }

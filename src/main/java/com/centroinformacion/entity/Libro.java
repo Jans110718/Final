@@ -83,6 +83,8 @@ public class Libro {
 	public String getReporteTipo() {
 		return  tipoLibro.getDescripcion() ;
 	}
+	
+
 
 }
 

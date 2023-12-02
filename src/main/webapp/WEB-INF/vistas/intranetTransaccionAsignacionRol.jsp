@@ -25,7 +25,7 @@
 </head>
 <body>
 <jsp:include page="intranetCabecera.jsp" />
-<div class="container" style="margin-top: 4%"><h4>Asignación de Rol a Usuario</h4></div>
+<div class="container" style="margin-top: 4%"><h4>AsignaciÃ³n de Rol a Usuario</h4></div>
 
 <form id="id_form">
 	<div class="container" style="margin-top: 1%">
@@ -55,7 +55,7 @@
 				<table id="id_table" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th style="width: 40%">Código</th>
+							<th style="width: 40%">CÃ³digo</th>
 							<th style="width: 40%">Rol</th>
 							<th style="width: 20%"></th>
 						</tr>
