@@ -58,6 +58,13 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	        + "(LOWER(p.titulo) LIKE LOWER(CONCAT('%', ?1, '%'))) AND "
 	        + "(p.estadoPrestamo.idDataCatalogo = 27)")
 	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+	
+	 @Query("SELECT l FROM Libro l " +
+	            "JOIN DevolucionHasLibro dhl ON dhl.libro.idLibro = l.idLibro " +
+	            "JOIN Devolucion d ON dhl.devolucion.idDevolucion = d.idDevolucion " +
+	            "JOIN Alumno a ON d.alumno.idAlumno = a.idAlumno " +
+	            "WHERE a.idAlumno = ?1")
+	    public abstract List<Libro> ListaLibrosDeAlumnoId(int idAlumno);
 }
 	
 
