@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.centroinformacion.entity.Autor;
 import com.centroinformacion.entity.Libro;
 
 /**
@@ -65,8 +66,14 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	            "JOIN Alumno a ON d.alumno.idAlumno = a.idAlumno " +
 	            "WHERE a.idAlumno = ?1")
 	    public abstract List<Libro> ListaLibrosDeAlumnoId(int idAlumno);
+	 
+	 //SIFUENTES
+	 @Query("select a from Autor a , LibroHasAutor lihau where a.idAutor = lihau.autor.idAutor and lihau.libro.idLibro = ?1")
+		public abstract List<Autor> traerAutorDeLibro(int idLibro);
 }
 	
+
+
 
 
 
