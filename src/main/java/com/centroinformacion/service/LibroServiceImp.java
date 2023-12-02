@@ -110,7 +110,6 @@ public class LibroServiceImp implements LibroService {
 	@Override
 	public void eliminaAutor(LibroHasAutor obj) {
 		libroHasAutorRepository.delete(obj);
-
 	}
 
 	@Override

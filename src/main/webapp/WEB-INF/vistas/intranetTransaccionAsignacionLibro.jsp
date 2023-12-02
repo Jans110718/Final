@@ -89,7 +89,6 @@ $("#id_libro").change(function(){
     });
 });
 
-
 $("#id_btn_agregar").click(function(){
     $.ajax({
         type: "POST",

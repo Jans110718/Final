@@ -67,10 +67,9 @@ public HashMap<String, Object> elimina(int idLibro, int idAutor){
     LibroHasAutorPK pk = new LibroHasAutorPK();
     pk.setIdAutor(idAutor);
     pk.setIdLibro(idLibro);
-    
     LibroHasAutor lihau = new LibroHasAutor();
     lihau.setLibroHasAutorPK(pk);
-    
+   
     
     if (libroService.buscaAutor(pk).isPresent()) {
         libroService.eliminaAutor(lihau);

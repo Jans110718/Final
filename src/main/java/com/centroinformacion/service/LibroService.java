@@ -44,7 +44,6 @@ public interface LibroService {
 	public abstract LibroHasAutor insertaAutor(LibroHasAutor obj);
 	public abstract void eliminaAutor(LibroHasAutor obj);
 	public abstract Optional<LibroHasAutor> buscaAutor(LibroHasAutorPK obj);
-
 }
 
 	

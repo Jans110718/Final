@@ -70,7 +70,6 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	 //SIFUENTES
 	 @Query("select a from Autor a , LibroHasAutor lihau where a.idAutor = lihau.autor.idAutor and lihau.libro.idLibro = ?1")
 		public abstract List<Autor> traerAutorDeLibro(int idLibro);
-
 }
 	
 

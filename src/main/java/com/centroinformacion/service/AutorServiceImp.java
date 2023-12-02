@@ -71,7 +71,6 @@ public class AutorServiceImp implements AutorService{
 	public List<Autor> listaAutor(){
 		return repository.findAll();
 }
-	
 
 	
 	

@@ -119,5 +119,4 @@ public class UtilController {
 	public List<Autor> listaAutor(){
 	    return autorService.listaAutor(); 
 	}
-	
 }
