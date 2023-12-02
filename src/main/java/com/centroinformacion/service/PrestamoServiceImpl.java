@@ -15,7 +15,7 @@ import jakarta.transaction.Transactional;
 public class PrestamoServiceImpl {
 
 	
-	/*@Autowired
+/*	@Autowired
 	private PrestamoRepository prestamoRepository;
 	
 	@Autowired
@@ -23,10 +23,10 @@ public class PrestamoServiceImpl {
 	
 	@Autowired
 	private PrestamoRepository ProductoRepository;
-	
-	@Override
+	*/
+	/*@Override
 	@Transactional
-	public Prestamo insertaBoleta(Prestamo obj) {
+	public Prestamo insertaPrestamo(Prestamo obj) {
 		Prestamo objCabecera = PrestamoRepository.save(obj);
 		for (PrestamoHasLibro detalle: obj.getDetallesBoleta()) {
 			detalle.getPrestamoHasLibroPK().setIdBoleta(objCabecera.getIdBoleta());
@@ -34,6 +34,5 @@ public class PrestamoServiceImpl {
 			ProductoRepository.actualizaStock(detalle.getPrestamoHasLibroPK().getIdLibro());
 		}
 		return objCabecera;
-	}*/
-
+*/
 }
