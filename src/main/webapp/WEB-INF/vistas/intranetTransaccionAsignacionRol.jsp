@@ -28,13 +28,118 @@
 <div class="container" style="margin-top: 4%"><h4>Asignación de Rol a Usuario</h4></div>
 
 <div class="container" style="margin-top: 1%">
-<!-- Agregar aquí -->
-	
+		<div class="row" style="margin-top: 1%">
+			<div class="col-md-6">
+				<label class="control-label" for="id_usuario">Usuario</label> 
+				<select id="id_usuario" name="idUsuario" class='form-control'>
+					<option value="-1"> [Seleccione] </option>
+				</select>
+			</div>
+		</div>	
+		<div class="row" style="margin-top: 1%">
+			<div class="col-md-6">
+				<label class="control-label" for="id_rol">Rol</label> 
+				<select id="id_rol" name="idRol" class='form-control'>
+					<option value="-1"> [Seleccione] </option>
+				</select>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 3%">
+			<div class="col-md-12" align="center">
+				<button type="button" class="btn btn-primary" id="id_btn_agregar">Agregar</button>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 3%">
+			<div class="col-md-12">
+				<table id="id_table" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th style="width: 10%">Código</th>
+							<th style="width: 40%">Usuario</th>
+							<th style="width: 40%">Rol</th>
+							<th style="width: 10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
 </div>
 
 <script type="text/javascript">
-<!-- Agregar aquí -->
+$.getJSON("listaUsuario", {}, function(data){
+	$.each(data, function(i,item){
+		$("#id_usuario").append("<option value="+item.idUsuario +">"+ item.nombreCompleto +"</option>");
+	});
+});
 
+$.getJSON("listaRoles", {}, function(data){
+	$.each(data, function(index,item){
+		$("#id_rol").append("<option value="+item.idRol +">"+ item.nombre +"</option>");
+	});
+});
+
+$("#id_usuario").change(function(){
+	var var_usuario = $("#id_usuario").val();
+	$.getJSON("listaRolPorUsuario", {"idUsuario":var_usuario }, function(data){
+		agregarGrilla(data , var_usuario);
+	});
+});
+
+$("#id_btn_agregar").click(function(){
+	$.ajax({
+        type: "POST",
+        url: "registraRol", 
+        data: $('#id_form').serialize(),
+        success: function(data){
+      	  agregarGrilla(data.lista, data.usuario);
+      	  mostrarMensaje(data.mensaje);
+        },
+        error: function(){
+      	  mostrarMensaje(MSG_ERROR);
+        }
+      });
+});
+
+function agregarGrilla(lista, var_usuario){
+	console.log(lista);
+	
+	 $('#id_table').DataTable().clear();
+	 $('#id_table').DataTable().destroy();
+	 $('#id_table').DataTable({
+			data: lista,
+			searching: false,
+			ordering: true,
+			processing: true,
+			pageLength: 10,
+			lengthChange: false,
+			columns:[
+				{data: "idRol"},
+				{data: "nombreCompleto"},
+				{data: "nombre"},
+				{data: function(row, type, val, meta){
+				    var salida='<button type="button" style="width: 90px" class="btn btn-warning btn-sm" onclick="accionEliminar(\'' + var_usuario +'\',\'' + row.idUsuario +'\',\'' + row.idRol +'\')">Eliminar</button>';
+					return salida;
+				},className:'text-center'},	
+			]                                     
+	    });
+}
+
+function accionEliminar(idUsuario, idRol){
+	$.ajax({
+        type: "POST",
+        url: "eliminaRol", 
+        data: {"idUsuario": idUsuario, "idRol": idRol},
+        success: function(data){
+      	  agregarGrilla(data.lista, data.usuario);
+      	  mostrarMensaje(data.mensaje);
+        },
+        error: function(){
+      	  mostrarMensaje(MSG_ERROR);
+        }
+     });
+}
 
 </script>   		
 </body>
