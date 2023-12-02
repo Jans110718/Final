@@ -12,27 +12,17 @@ import jakarta.transaction.Transactional;
 
 @Service
 
-public class PrestamoServiceImpl {
+public class PrestamoServiceImpl implements PrestamoService {
 
 	
-/*	@Autowired
+	@Autowired
 	private PrestamoRepository prestamoRepository;
 	
-	@Autowired
-	private PrestamoHasLibroRepository boletaHasProductoRepository;
-	
-	@Autowired
-	private PrestamoRepository ProductoRepository;
-	*/
-	/*@Override
+	@Override
 	@Transactional
 	public Prestamo insertaPrestamo(Prestamo obj) {
-		Prestamo objCabecera = PrestamoRepository.save(obj);
-		for (PrestamoHasLibro detalle: obj.getDetallesBoleta()) {
-			detalle.getPrestamoHasLibroPK().setIdBoleta(objCabecera.getIdBoleta());
-			PrestamoHasLibroRepository.save(detalle);
-			ProductoRepository.actualizaStock(detalle.getPrestamoHasLibroPK().getIdLibro());
-		}
-		return objCabecera;
-*/
+		Prestamo objCabecera = prestamoRepository.save(obj);
+	    return objCabecera;
+	}
+
 }
