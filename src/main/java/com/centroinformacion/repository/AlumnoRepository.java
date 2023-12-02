@@ -6,8 +6,12 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.centroinformacion.entity.Alumno;
+import com.centroinformacion.entity.Libro;
+
+@Repository
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	
@@ -56,9 +60,12 @@ public abstract List<Alumno> listaConsultarAlumno(String nombres,String apellido
 /*Para hacer la busca tanto por nbombre y apellido en la tabla modal al seleccionr boton buscar alumno*/
 
 	
-	@Query("select x from Alumno x where x.nombres like ?1 or x.apellidos like ?1")
+	@Query("select x from Alumno x where "
+		    + "( x.nombres like ?1 or x.apellidos like ?1 ) ")
 	public abstract List<Alumno> listaAlumno (String filtro, Pageable pageable);
 
+	
+	
 }
 	
 	
