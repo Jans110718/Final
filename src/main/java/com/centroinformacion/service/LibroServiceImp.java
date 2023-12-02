@@ -3,7 +3,6 @@ package com.centroinformacion.service;
  * @author Yheremi Ramos
  */
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.centroinformacion.entity.Alumno;
 import com.centroinformacion.entity.Libro;
 import com.centroinformacion.repository.LibroRepository;
 
