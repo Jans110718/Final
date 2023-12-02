@@ -6,38 +6,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.centroinformacion.entity.Alumno;
 import com.centroinformacion.entity.Libro;
+import com.centroinformacion.entity.Mensaje;
+import com.centroinformacion.entity.Prestamo;
+import com.centroinformacion.entity.PrestamoHasLibro;
+import com.centroinformacion.entity.PrestamoHasLibroPK;
+import com.centroinformacion.entity.Usuario;
 import com.centroinformacion.service.AlumnoService;
 import com.centroinformacion.service.LibroService;
+import com.centroinformacion.service.PrestamoService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PrestamoLibroTransaccionController {
-	
-	
+@Controller
+public class PrestamoLibroTransaccionController{
+
 	@Autowired
 	private AlumnoService alumnoService;
 
 	@Autowired
 	private LibroService libroService;
 
-
-	
-	
-	//Los productos seleccionados
+	@Autowired
+	private PrestamoService prestamoService;
 	
 	//Los productos seleccionados
-	private List<Libro> seleccionados = new ArrayList<Libro>();
-	
-	
-	/*Cargar clientes en el modal*/
+		private List<Prestamo> seleccionados = new ArrayList<Prestamo>();
+		
+		
 	@RequestMapping("/cargaAlumno")
 	@ResponseBody()
 	public List<Alumno> listaAlumno(String filtro){
@@ -48,7 +53,7 @@ public class PrestamoLibroTransaccionController {
 		return lstSalida;		
 	}
 		
-	@RequestMapping("/cargaLibro")
+	@RequestMapping("/listaLibro")
 	@ResponseBody()
 	public List<Libro> listaLibro(String filtro){
 		int page = 0;
@@ -57,41 +62,42 @@ public class PrestamoLibroTransaccionController {
 		List<Libro> lstSalida = libroService.listaLibro("%"+filtro+"%", pageable);
 		return lstSalida;		
 	}
+	
 
-	/**/
-/*	@RequestMapping("/listaSeleccion")
+	@RequestMapping("/listaSeleccion")
 	@ResponseBody()
-	public List<Libro> lista(){
-		return libros; 
+	public List<Prestamo> lista(){
+		return seleccionados; 
 	}
 	
 	@RequestMapping("/agregarSeleccion")
 	@ResponseBody()
-	public List<Seleccion> agregar(Seleccion obj){
+	public List<Prestamo> agregar(Prestamo obj){
 		seleccionados.add(obj);
 		return seleccionados; 
 	}
 	
+	
 	@RequestMapping("/eliminaSeleccion")
 	@ResponseBody()
-	public List<Seleccion> eliminar(int idProducto){
-		seleccionados.removeIf( x -> x.getIdProducto() == idProducto);
+	public List<Prestamo> eliminar(int idPrestamo){
+		seleccionados.removeIf( x -> x.getIdPrestamo() == idPrestamo);
 		return seleccionados; 
 	}
 	
-	@RequestMapping("/registraBoleta")
+	/*@RequestMapping("/registraBoleta")
 	@ResponseBody()
-	public Mensaje boleta(Cliente cliente, HttpSession session) {
+	public Mensaje boleta(Alumno cliente, HttpSession session) {
 		Usuario objUsuario = (Usuario)session.getAttribute("objUsuario");
 		Mensaje objMensaje = new Mensaje();
 		
-		List<BoletaHasProducto> detalles = new ArrayList<BoletaHasProducto>();
-		for (Seleccion seleccion : seleccionados) {
+		List<PrestamoHasLibro> detalles = new ArrayList<PrestamoHasLibro>();
+		for (Prestamo seleccion : seleccionados) {
 			
-			BoletaHasProductoPK pk = new BoletaHasProductoPK();
-			pk.setIdProducto(seleccion.getIdProducto());
+			PrestamoHasLibroPK pk = new PrestamoHasLibroPK();
+			pk.setIdPrestamo(seleccion.getIdPrestamo());
 			
-			BoletaHasProducto psb = new BoletaHasProducto();
+			PrestamoHasLibro psb = new PrestamoHasLibro();
 			psb.setPrecio(seleccion.getPrecio());
 			psb.setCantidad(seleccion.getCantidad());
 			psb.setProductoHasBoletaPK(pk);
@@ -113,7 +119,7 @@ public class PrestamoLibroTransaccionController {
 				salida += "Cliente: " + objBoleta.getCliente().getNombre() + "<br><br>";
 				salida += "<table class=\"table\"><tr><td>Producto</td><td>Precio</td><td>Cantidad</td><td>Subtotal</td></tr>";
 				double monto = 0;
-				for (Seleccion x : seleccionados) {
+				for (Prestamo x : seleccionados) {
 					salida += "<tr><td>"  + x.getNombre() 
 							+ "</td><td>" + x.getPrecio() 
 							+ "</td><td>" + x.getCantidad()
@@ -128,9 +134,5 @@ public class PrestamoLibroTransaccionController {
 		}
 		
 		return objMensaje;
-	}
-	
-}*/
+	}*/
 }
-	
-
