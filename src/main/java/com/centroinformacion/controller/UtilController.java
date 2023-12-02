@@ -1,4 +1,3 @@
-
 package com.centroinformacion.controller;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class UtilController {
 	@GetMapping("/listaSala")
 	@ResponseBody
 	public List<Sala> listaSala() {
-		return salaService.listaSalaDisponibles(); 
+		return salaService.listaSalaDisponibles();
 	}
 
 	@GetMapping("/listaCategoriaDeLibro")
