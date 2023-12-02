@@ -76,7 +76,6 @@ $.getJSON("listaLibro", {}, function(data){
         $("#id_libro").append("<option value="+item.idLibro +">"+ item.titulo +"</option>");
     });
 });
-
 $.getJSON("listaAutor", {}, function(data){
     $.each(data, function(i,item){
         $("#id_autor").append("<option value="+item.idAutor +">"+ item.nombreCompleto +"</option>");

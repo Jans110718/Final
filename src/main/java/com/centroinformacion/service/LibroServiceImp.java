@@ -102,7 +102,6 @@ public class LibroServiceImp implements LibroService {
 	public List<Libro> listaLibro() {
 		return repository.findAll();
 	}
-	
 	@Override
 	public LibroHasAutor insertaAutor(LibroHasAutor obj) {
 		return libroHasAutorRepository.save(obj);

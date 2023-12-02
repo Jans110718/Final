@@ -114,7 +114,6 @@ public class UtilController {
 		return libroService.listaLibro();
 	}
 	
-	
 	@GetMapping("/listaAutor")
 	@ResponseBody
 	public List<Autor> listaAutor(){

@@ -78,7 +78,6 @@ public HashMap<String, Object> elimina(int idLibro, int idAutor){
     } else {
         maps.put("mensaje", "No existe autor");
     }
-    
     List<Autor> lstSalida = libroService.traerAutorDeLibro(idLibro);
     maps.put("lista", lstSalida);
     maps.put("libro", idLibro);

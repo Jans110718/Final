@@ -119,7 +119,6 @@ public class Autor {
 		return sdf.format(fechaNacimiento);		
 	}
 	
-	
 	//SIFUENTES
 	public String getNombreCompleto() {
 		return nombres.concat(" ").concat(apellidos);
