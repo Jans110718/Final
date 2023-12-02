@@ -27,12 +27,13 @@
 <jsp:include page="intranetCabecera.jsp" />
 <div class="container" style="margin-top: 4%"><h4>Asignación de Rol a Usuario</h4></div>
 
-<div class="container" style="margin-top: 1%">
+<form id="id_form">
+	<div class="container" style="margin-top: 1%">
 		<div class="row" style="margin-top: 1%">
 			<div class="col-md-6">
 				<label class="control-label" for="id_usuario">Usuario</label> 
 				<select id="id_usuario" name="idUsuario" class='form-control'>
-					<option value="-1"> [Seleccione] </option>
+					<option value=""> [Seleccione] </option>
 				</select>
 			</div>
 		</div>	
@@ -40,7 +41,7 @@
 			<div class="col-md-6">
 				<label class="control-label" for="id_rol">Rol</label> 
 				<select id="id_rol" name="idRol" class='form-control'>
-					<option value="-1"> [Seleccione] </option>
+					<option value=""> [Seleccione] </option>
 				</select>
 			</div>
 		</div>
@@ -54,10 +55,9 @@
 				<table id="id_table" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th style="width: 10%">Código</th>
-							<th style="width: 40%">Usuario</th>
+							<th style="width: 40%">Código</th>
 							<th style="width: 40%">Rol</th>
-							<th style="width: 10%"></th>
+							<th style="width: 20%"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -66,6 +66,7 @@
 			</div>
 		</div>
 </div>
+</form>
 
 <script type="text/javascript">
 $.getJSON("listaUsuario", {}, function(data){
@@ -115,11 +116,10 @@ function agregarGrilla(lista, var_usuario){
 			pageLength: 10,
 			lengthChange: false,
 			columns:[
-				{data: "idRol"},
-				{data: "nombreCompleto"},
+				{data: "idRol"},	
 				{data: "nombre"},
 				{data: function(row, type, val, meta){
-				    var salida='<button type="button" style="width: 90px" class="btn btn-warning btn-sm" onclick="accionEliminar(\'' + var_usuario +'\',\'' + row.idUsuario +'\',\'' + row.idRol +'\')">Eliminar</button>';
+				    var salida='<button type="button" style="width: 90px" class="btn btn-warning btn-sm" onclick="accionEliminar(\'' + var_usuario +'\',\'' + row.idRol +'\')">Eliminar</button>';
 					return salida;
 				},className:'text-center'},	
 			]                                     
