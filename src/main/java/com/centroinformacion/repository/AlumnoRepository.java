@@ -59,15 +59,12 @@ public abstract List<Alumno> listaConsultarAlumno(String nombres,String apellido
 
 /*Para hacer la busca tanto por nbombre y apellido en la tabla modal al seleccionr boton buscar alumno*/
 
-	
-	@Query("select x from Alumno x where "
-		    + "( x.nombres like ?1 or x.apellidos like ?1 ) ")
+	@Query("select x from Alumno x where x.nombres like ?1 or x.apellidos like ?1")
 	public abstract List<Alumno> listaAlumno (String filtro, Pageable pageable);
 
-	
-	
 }
 	
+
 	
 	
 

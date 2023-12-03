@@ -1,5 +1,9 @@
 package com.centroinformacion.repository;
 
-public interface PrestamoHasLibroRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.centroinformacion.entity.PrestamoHasLibro;
+
+public interface PrestamoHasLibroRepository  extends JpaRepository<PrestamoHasLibro, Integer>{
 
 }

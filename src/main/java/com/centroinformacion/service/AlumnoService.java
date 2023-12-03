@@ -28,13 +28,10 @@ public interface AlumnoService {
 	public abstract List<Alumno> listaConsultaAlumno(int estado, int idPais, int idDataCatalogo,  String nomApe, Date fecDesde, Date fecHasta, String correo, String dni, String telefono);
 
 
-	//Para la consulta
+	//Para la consulta PC4
 
 
-	public abstract List<Alumno> listaAlumno(String filtro, Pageable pageable);
-
+	public abstract List<Alumno> listaAlumno (String filtro, Pageable pageable);
+	
 
 }
-
-
-

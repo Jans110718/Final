@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.centroinformacion.entity.Autor;
 import com.centroinformacion.entity.Libro;
+import com.centroinformacion.entity.LibroHasAutor;
+import com.centroinformacion.entity.LibroHasAutorPK;
 
 
 public interface LibroService {
@@ -35,8 +38,10 @@ public interface LibroService {
 	/*Transaccion*/
 	//consultas
 	
+	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);
 
-	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+	
+
 
 }
 
