@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 import com.centroinformacion.entity.DataCatalogo;
 import com.centroinformacion.entity.Libro;
 import com.centroinformacion.entity.Prestamo;
+
 import com.centroinformacion.entity.PrestamoHasLibro;
 import com.centroinformacion.repository.LibroRepository;
 import com.centroinformacion.repository.PrestamoHasLibroRepository;
+
+
 import com.centroinformacion.repository.PrestamoRepository;
 
 import jakarta.transaction.Transactional;
@@ -26,11 +29,13 @@ public class PrestamoServiceImpl implements PrestamoService{
 	@Autowired
 	private PrestamoHasLibroRepository prestamoHasLibroRepository;
 	
+
 	@Override
 	@Transactional
 	public Prestamo insertaPrestamo(Prestamo obj) {
 		Prestamo objCabecera = prestamoRepository.save(obj);
-		Libro objLibro = null;
+
+    Libro objLibro = null;
 		DataCatalogo objDataCatalogo = new DataCatalogo();
 		objDataCatalogo.setIdDataCatalogo(26);
 		
@@ -43,6 +48,7 @@ public class PrestamoServiceImpl implements PrestamoService{
 			
 		}
 	    return objCabecera;
+		return objCabecera;
 	}
 
 }

@@ -66,7 +66,11 @@ public class AutorServiceImp implements AutorService{
 		return repository.listaConsultaAutor(estado, idPais ,idGrado, nomApe, fecDesde, fecHasta);
 
 	}
-	
+//SIFUENTES
+	@Override
+	public List<Autor> listaAutor(){
+		return repository.findAll();
+}
 
 	
 	

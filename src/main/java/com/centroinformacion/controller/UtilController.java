@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.centroinformacion.entity.Alumno;
+import com.centroinformacion.entity.Autor;
 import com.centroinformacion.entity.DataCatalogo;
+import com.centroinformacion.entity.Libro;
 import com.centroinformacion.entity.Pais;
+import com.centroinformacion.entity.Sala;
 import com.centroinformacion.service.AlumnoService;
+import com.centroinformacion.service.AutorService;
 import com.centroinformacion.service.DataCatalogoService;
+import com.centroinformacion.service.LibroService;
 import com.centroinformacion.service.PaisService;
+import com.centroinformacion.service.SalaService;
 import com.centroinformacion.util.AppSettings;
 @Controller
 public class UtilController {
@@ -26,6 +32,16 @@ public class UtilController {
 	@Autowired
 	private AlumnoService alumnoService;
 	
+	@Autowired
+	private SalaService salaService;
+	
+	//SIFUENTES
+	@Autowired
+	private LibroService libroService;
+	
+	
+	@Autowired
+	private AutorService autorService;
 
 	@GetMapping("/listaPais")
 	@ResponseBody
@@ -37,6 +53,12 @@ public class UtilController {
 	@ResponseBody
 	public List<Alumno> listaAlumno() {
 		return alumnoService.listaTodos();
+	}
+	
+	@GetMapping("/listaSala")
+	@ResponseBody
+	public List<Sala> listaSala() {
+		return salaService.listaSalaDisponibles();
 	}
 
 	@GetMapping("/listaCategoriaDeLibro")
@@ -86,5 +108,15 @@ public class UtilController {
 	public List<DataCatalogo> listaEstadoLibro() {
 		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_08_ESTADO_DE_LIBRO);
 	}
+	@GetMapping("/listaLibro")
+	@ResponseBody
+	public List<Libro> listaLibro() {
+		return libroService.listaLibro();
+	}
 	
+	@GetMapping("/listaAutor")
+	@ResponseBody
+	public List<Autor> listaAutor(){
+	    return autorService.listaAutor(); 
+	}
 }

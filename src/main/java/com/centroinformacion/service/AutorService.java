@@ -18,8 +18,6 @@ public interface AutorService {
 	/*Encapsula un objeto, java util*/
 	public abstract Optional<Autor>buscaAutor(int idAutor);
 	
-	
-	
 	//Validaciones
 	public abstract List<Autor> listaPorNombreApellidoIgual(String nombres, String apellidos); 
 	public abstract List<Autor> listaPorNombreApellidoIgualActualiza(String nombres, String apellidos, int idAutor);
@@ -27,6 +25,11 @@ public interface AutorService {
 
 	//Consulta
 	public abstract List<Autor> listaConsultaAutor(int estado, int idPais ,int idGrado,  String nomApe, Date fecDesde, Date fecHasta);
+	
+	
+	
+	//SIFUENTES
+	public abstract List<Autor> listaAutor();
 
 }
 

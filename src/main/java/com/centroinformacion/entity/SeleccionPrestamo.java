@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class SeleccionPrestamo {
 
+
 	private int idLibro;
 	private String titulo;
 	

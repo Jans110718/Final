@@ -53,9 +53,39 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	@Query("select p from Libro p where p.titulo like ?1 and p.estadoPrestamo.idDataCatalogo = 27 ")
 	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);
 
+
+	/*@Query("select p from Libro p where "
+		    + "( p.titulo like ?1 )"
+		    )
+	*/
+	
+	
+	/*@Query("select p from Libro p where "
+		
+		    + "( p.titulo like ?1 ) and"
+		    + "( p.idEstadoPrestamo = 27 )" )*/
+
+	@Query("SELECT p FROM Libro p WHERE "
+	        + "(LOWER(p.titulo) LIKE LOWER(CONCAT('%', ?1, '%'))) AND "
+	        + "(p.estadoPrestamo.idDataCatalogo = 27)")
+	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+	
+	 @Query("SELECT l FROM Libro l " +
+	            "JOIN DevolucionHasLibro dhl ON dhl.libro.idLibro = l.idLibro " +
+	            "JOIN Devolucion d ON dhl.devolucion.idDevolucion = d.idDevolucion " +
+	            "JOIN Alumno a ON d.alumno.idAlumno = a.idAlumno " +
+	            "WHERE a.idAlumno = ?1")
+	    public abstract List<Libro> ListaLibrosDeAlumnoId(int idAlumno);
+	 
+	 //SIFUENTES
+	 @Query("select a from Autor a , LibroHasAutor lihau where a.idAutor = lihau.autor.idAutor and lihau.libro.idLibro = ?1")
+		public abstract List<Autor> traerAutorDeLibro(int idLibro);
+
 }
 
 	
+
+
 
 
 
