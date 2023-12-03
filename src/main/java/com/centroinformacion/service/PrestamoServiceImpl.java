@@ -48,7 +48,7 @@ public class PrestamoServiceImpl implements PrestamoService{
 			
 		}
 	    return objCabecera;
-	
+
 	}
 
 }

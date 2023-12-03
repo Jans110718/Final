@@ -46,7 +46,7 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	
 
 
-	// PC4
+
 
 	@Query("select p from Libro p where p.titulo like ?1 and p.estadoPrestamo.idDataCatalogo = 27 ")
 	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);
