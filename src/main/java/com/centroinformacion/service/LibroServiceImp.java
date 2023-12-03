@@ -85,12 +85,11 @@ public class LibroServiceImp implements LibroService {
 	
 
 	@Override
-	public List<Libro> listaLibro(String filtro, Pageable pageable) {
-		return repository.listaLibro(filtro, pageable);
-
+	public List<Libro> listaLibroDisponible(String filtro, Pageable pageable) {
+		return repository.listaLibroDisponible(filtro, pageable);
 	}
 	
-	
+
     //SIFUENTES
 	
 	@Override
@@ -116,4 +115,5 @@ public class LibroServiceImp implements LibroService {
 	public Optional<LibroHasAutor> buscaAutor(LibroHasAutorPK obj) {
 		return libroHasAutorRepository.findById(obj);
 	}
+
 }

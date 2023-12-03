@@ -74,13 +74,13 @@ public class AlumnoServiceImp implements AlumnoService {
 
 	
 	
-	
 	@Override
 	public List<Alumno> listaAlumno(String filtro, Pageable pageable) {
 		return repository.listaAlumno(filtro, pageable);
 	}
 
-
+	
+	
 
 	
 	

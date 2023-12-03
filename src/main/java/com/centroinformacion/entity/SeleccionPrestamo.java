@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Seleccion {
+public class SeleccionPrestamo {
+
 
 	private int idLibro;
 	private String titulo;

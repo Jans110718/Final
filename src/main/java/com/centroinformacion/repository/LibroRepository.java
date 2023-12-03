@@ -44,6 +44,16 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	public abstract List<Libro> listaConsultaLibro(int estado, int idCategoria, int idTipo,  String titulo, String serie, int anio);
 
 	
+
+
+	// PC4
+	@Query("SELECT a FROM Autor a, LibroHasAutor lha WHERE a.idAutor = lha.autor.idAutor AND lha.libro.idLibro = ?1")
+	public abstract List<Autor> traerAutorDeLibro(int idLibro);
+
+	@Query("select p from Libro p where p.titulo like ?1 and p.estadoPrestamo.idDataCatalogo = 27 ")
+	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);
+
+
 	/*@Query("select p from Libro p where "
 		    + "( p.titulo like ?1 )"
 		    )
@@ -70,7 +80,9 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 	 //SIFUENTES
 	 @Query("select a from Autor a , LibroHasAutor lihau where a.idAutor = lihau.autor.idAutor and lihau.libro.idLibro = ?1")
 		public abstract List<Autor> traerAutorDeLibro(int idLibro);
+
 }
+
 	
 
 
