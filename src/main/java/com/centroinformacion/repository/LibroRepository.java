@@ -47,8 +47,6 @@ public interface LibroRepository extends JpaRepository<Libro, Integer>  {
 
 
 	// PC4
-	@Query("SELECT a FROM Autor a, LibroHasAutor lha WHERE a.idAutor = lha.autor.idAutor AND lha.libro.idLibro = ?1")
-	public abstract List<Autor> traerAutorDeLibro(int idLibro);
 
 	@Query("select p from Libro p where p.titulo like ?1 and p.estadoPrestamo.idDataCatalogo = 27 ")
 	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);

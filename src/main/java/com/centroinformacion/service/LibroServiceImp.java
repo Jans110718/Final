@@ -116,4 +116,10 @@ public class LibroServiceImp implements LibroService {
 		return libroHasAutorRepository.findById(obj);
 	}
 
+	@Override
+	public List<Libro> listaLibro(String filtro, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
