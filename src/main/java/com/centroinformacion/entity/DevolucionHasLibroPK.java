@@ -15,6 +15,6 @@ import lombok.Setter;
 public class DevolucionHasLibroPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int idPrestamo;
+	private int idDevolucion;
 	private int idLibro;
 }

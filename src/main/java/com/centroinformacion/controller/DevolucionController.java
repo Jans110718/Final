@@ -11,25 +11,34 @@ import com.centroinformacion.entity.Usuario;
 import com.centroinformacion.service.AlumnoService;
 import com.centroinformacion.service.DevolucionService;
 import com.centroinformacion.service.LibroService;
+import com.centroinformacion.service.PrestamoService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-@RestController
-@RequestMapping("/devoluciones")
+@Getter
+@Setter
+@Controller
 public class DevolucionController {
 
     @Autowired
     private DevolucionService devolucionService;
+    @Autowired
+    private PrestamoService prestamoService;
     @Autowired
 	private AlumnoService alumnoService;
 
@@ -54,28 +63,29 @@ public class DevolucionController {
 			int page = 0;
 			int size = 5;
 			Pageable pageable = PageRequest.of(page, size);
-			List<Libro> lstSalida = libroService.listaLibroDisponible("%"+filtro+"%", pageable);
+			List<Libro> lstSalida = libroService.listaLibroNoDisponible("%"+filtro+"%", pageable);
 			return lstSalida;
 		}
 
-		@RequestMapping("/listaSeleccion")
+		@RequestMapping("/listaSelecciones")
 		@ResponseBody()
 		public List<SeleccionDevolucion> lista() {
 			return devoluciones;
 		}
 
-		@RequestMapping("/agregarSeleccion")
+		@RequestMapping("/agregarSelecciones")
 		@ResponseBody()
 		public List<SeleccionDevolucion> agregar(SeleccionDevolucion obj) {
 			devoluciones.add(obj);
 			return devoluciones;
 		}
 
-		@RequestMapping("/eliminaSeleccion")
+		@RequestMapping("/eliminaSelecciones")
 		@ResponseBody()
 		public List<SeleccionDevolucion> eliminar(int idLibro) {
 			devoluciones.removeIf(x -> x.getIdLibro() == idLibro);
 			return devoluciones;
+			
 		}
 		
 		
@@ -87,7 +97,6 @@ public class DevolucionController {
 			
 			Usuario objUsuario = (Usuario) session.getAttribute("objUsuario");
 			Mensaje objMensaje = new Mensaje();
-
 			List<DevolucionHasLibro> detalles = new ArrayList<DevolucionHasLibro>();
 			for (SeleccionDevolucion seleccionDevolucion : devoluciones) {
 
@@ -102,8 +111,8 @@ public class DevolucionController {
 
 			Devolucion obj = new Devolucion();
 			obj.setFechaRegistro(new Date());
-			obj.setFechaPrestamo(new Date());
 			obj.setFechaDevolucion(fechaDevolucion);
+			obj.setFechaPrestamo(new Date());
 			obj.setAlumno(alumno);
 			obj.setUsuario(objUsuario);
 			obj.setDetallesDevolucion(detalles);
@@ -111,21 +120,28 @@ public class DevolucionController {
 			Devolucion objDevolucion = devolucionService.insertaDevolucion(obj);
 			
 			String salida = "-1";
+			// Creas un SimpleDateFormat con el formato de fecha que deseas
+			SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+			String fechaFormateada = sdf.format(fechaDevolucion);
+			
 			
 			if (objDevolucion != null) {
-					salida = "Se generó la devolucion con el código N° : " + objDevolucion.getIdDevolucion() + "<br><br>";
-					salida += "Alumno: " + objDevolucion.getAlumno().getNombres()+"<br><br>";
-					salida += "<table class=\"table\"><tr><td>Codigo</td><td>Titulo</td></tr>";
-					for (SeleccionDevolucion x : devoluciones) {
-						salida += "<tr><td>"  + x.getIdLibro() 
-								+ "</td><td>" + x.getTitulo();
-								
-					}
+			    salida = "<pre style=\"background-color: #FFFFFF;\">";
+			    salida += 	"Se generó el Devolucion con el código N° : " + objDevolucion.getIdDevolucion() + "\n\n";
+			    salida +=	"Alumno: " + objDevolucion.getAlumno().getNombres() + "\n\n";
+			    salida += 	"Fecha de devolución : " + fechaFormateada + "\n\n";
+			    salida +=	"<table class=\"table\"><tr><td>Codigo</td><td>Titulo</td></tr>";
+			    for (SeleccionDevolucion x : devoluciones) {
+			        salida += "<tr><td>"  + x.getIdLibro() 
+			                + "</td><td>" + x.getTitulo();
+			    }
+			    salida += "</table>";
+			    salida += "</pre>";
 
-					devoluciones.clear();
-					objMensaje.setTexto(salida);	
+			    devoluciones.clear();
+			    objMensaje.setTexto(salida);    
 			}
-			
+
 			return objMensaje;
 		}
 }

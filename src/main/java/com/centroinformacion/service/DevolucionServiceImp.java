@@ -30,10 +30,10 @@ public class DevolucionServiceImp implements DevolucionService {
 
 	    Libro objLibro = null;
 			DataCatalogo objDataCatalogo = new DataCatalogo();
-			objDataCatalogo.setIdDataCatalogo(26);
+			objDataCatalogo.setIdDataCatalogo(27);
 			
 			for (DevolucionHasLibro detalle: obj.getDetallesDevolucion()) {
-				detalle.getDevolucionHasLibroPK().setIdPrestamo(objCabecera.getIdDevolucion());
+				detalle.getDevolucionHasLibroPK().setIdDevolucion(objCabecera.getIdDevolucion());
 				devolucionHasLibroRepository.save(detalle);
 				objLibro =libroRepository.findById(detalle.getDevolucionHasLibroPK().getIdLibro()).get();
 				objLibro.setEstadoPrestamo(objDataCatalogo);

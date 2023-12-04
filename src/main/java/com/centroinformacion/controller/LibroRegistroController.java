@@ -28,15 +28,7 @@ public class LibroRegistroController {
 	
 	@Autowired
 	private LibroService libroService;
-	@RequestMapping("/listaLibroDevolucion")
-	@ResponseBody()
-	public List<Libro> listaLibro(String filtro) {
-		int page = 0;
-		int size = 5;
-		Pageable pageable = PageRequest.of(page, size);
-		List<Libro> lstSalida = libroService.listaLibroNoDisponible("%"+filtro+"%", pageable);
-		return lstSalida;
-	}
+	
 	@PostMapping("/registraLibro")
 	@ResponseBody
 	public Map<?, ?> registra(Libro obj, HttpSession session){

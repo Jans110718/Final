@@ -134,5 +134,6 @@ public class PrestamoLibroTransaccionController {
 		
 		return objMensaje;
 	}
+	
 
 }

@@ -31,15 +31,7 @@ public class AlumnoRegistroController {
 
 	@Autowired
 	private AlumnoService alumnoService;
-	@RequestMapping("/listaAlumnoDevolucion")
-	@ResponseBody()
-	public List<Alumno> listaAlumno(String filtro) {
-		int page = 0;
-		int size = 5;
-		Pageable pageable = PageRequest.of(page, size);
-		List<Alumno> lstSalida = alumnoService.listaAlumno("%" + filtro + "%", pageable);
-		return lstSalida;
-	}
+	
 	@PostMapping("/registraAlumno")
 	@ResponseBody
 	public Map<?, ?> registra(Alumno obj, HttpSession session){
