@@ -25,7 +25,7 @@
 <body>
 
 <jsp:include page="intranetCabecera.jsp" />
-<div class="container" style="margin-top: 4%"><h4>PrÃ©stamo de Libro</h4></div>
+<div class="container" style="margin-top: 4%"><h4>Devolucion de Libro</h4></div>
 
 <div class="container" style="margin-top: 1%">
 <!-- Agregar aquÃ­ -->
@@ -75,8 +75,8 @@
                 <div class="form-group">
                     <div class="col-lg-9 col-lg-offset-5">
                         <div class="col-lg-9 col-lg-offset-3">
-                            <button type="button" id="id_btnAgregar" class="btn btn-primary" style="width: 170px">AGREGA PRODUCTO</button>
-                            <button type="button" id="id_btnRegistrar"  class="btn btn-primary" style="width: 170px">REGISTRA BOLETA</button>
+                            <button type="button" id="id_btnAgregar" class="btn btn-primary" style="width: 170px">AGREGA  LIBRO</button>
+                            <button type="button" id="id_btnRegistrar"  class="btn btn-primary" style="width: 200px">REGISTRA DEVOLUCION</button>
                         </div>
                     </div>
                 </div>
@@ -327,6 +327,7 @@ $("#id_btnAgregar").click(function (){
 
 	
 	//Al pulsar el boton registrar
+	//Al pulsar el boton registrar
 	$("#id_btnRegistrar").click(function (){
 	var var_alu = $("#id_alumno_id").val();
 	var var_idLibro = $("#id_libro_id").val();
@@ -377,6 +378,7 @@ $("#id_btnAgregar").click(function (){
 		   
 	}
 });
+
 
 
 

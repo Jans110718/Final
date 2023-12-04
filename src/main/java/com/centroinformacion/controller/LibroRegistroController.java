@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.centroinformacion.entity.Libro;
@@ -25,7 +28,15 @@ public class LibroRegistroController {
 	
 	@Autowired
 	private LibroService libroService;
-	
+	@RequestMapping("/listaLibroDevolucion")
+	@ResponseBody()
+	public List<Libro> listaLibro(String filtro) {
+		int page = 0;
+		int size = 5;
+		Pageable pageable = PageRequest.of(page, size);
+		List<Libro> lstSalida = libroService.listaLibroNoDisponible("%"+filtro+"%", pageable);
+		return lstSalida;
+	}
 	@PostMapping("/registraLibro")
 	@ResponseBody
 	public Map<?, ?> registra(Libro obj, HttpSession session){
