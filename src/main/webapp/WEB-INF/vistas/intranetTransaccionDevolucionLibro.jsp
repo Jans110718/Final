@@ -1,4 +1,5 @@
 <jsp:include page="intranetValida.jsp" />
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="esS" >
 <head>
@@ -266,69 +267,79 @@
 
 	
 	//Al pulsar el boton agregar
-$("#id_btnAgregar").click(function (){
-	var var_id = $("#id_libro_id").val();
-	var var_nom_com = $("#id_alumno_nombre").val();
-	var var_titulo = $("#id_libro_nombre").val();
-	var var_fech = $("#id_alumno_fechadevolucion").val();
-	
-	//Validar duplicados
-	var yaExiste = false;
-	$("#id_table_boleta_body tr").each(function() {
-		if($(this).find('td:eq(0)').html() == var_id){
-			yaExiste = true;
-		}
-	});
-	
-	if ( var_titulo == '-1' ){
-		$("#idMensajeTexto").text("Seleccione un Libro");
-		$("#idMensaje").modal("show");
-	}else if (yaExiste){
-		$("#idMensajeTexto").text("Existe el libro elegido");
-		$("#idMensaje").modal("show");
-	}else{
-			var var_titulo = $("#id_libro_nombre").val();
-			
-
-			//limpiar la tabla
-			$("#id_table_boleta_body").empty();
+	$("#id_btnAgregar").click(function (){
+    var var_id = $("#id_libro_id").val();
+    var var_nom_com = $("#id_alumno_nombre").val();
+    var var_titulo = $("#id_libro_nombre").val();
+    var var_fech = $("#id_fechaDevolucion").val();
+    
+    // Validar duplicados
+    var yaExiste = false;
+    $("#id_table_boleta_body tr").each(function() {
+        if($(this).find('td:eq(0)').html() == var_id){
+            yaExiste = true;
+        }
+    });
+    
+    
+    
+    if (var_nom_com == '' ){
+        $("#idMensajeTexto").text("Seleccione un alumno");
+        $("#idMensaje").modal("show");
+    }
+    else if ( var_titulo == '' ){
+        $("#idMensajeTexto").text("Seleccione un Libro");
+        $("#idMensaje").modal("show");
+    } else if (var_fech == '' ){
+        $("#idMensajeTexto").text("Seleccione una fecha");
+        $("#idMensaje").modal("show");
+    } else if (yaExiste){
+        $("#idMensajeTexto").text("Existe el libro elegido");
+        $("#idMensaje").modal("show");
+    } else {
+    	
+    	
+    	
+    	var var_titulo = $("#id_libro_nombre").val();
 				
-			var jsonParam = {"idLibro":var_id, "titulo":var_titulo};
-			
-			$.ajax({
-				url:  'agregarSeleccion',
-				type: 'POST',
-				dataType:'json',
-				data: jsonParam,
-				success:function(data){
-					console.log(data);
-					if(data != null){
-						$.each(data, function(index, item){
-							$('#id_table_boleta_body').append("<tr><td>" +item.idLibro + "</td><td>" +item.titulo + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idLibro +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
-						});
-						
-					}else
-						swal("Error al agregar la seleccion del libro","","error");
-						return false;
-					},
-				error: function (jqXhr) { 
-					swal("Error en la conexion","","error");
-				}
-		   });	
-			   
-				
-			//limpia las cajas de texto
-			$("#id_libro_id").val("-1");
-			$("#id_alumno_nombre").val("");
-			$("#id_alumno_fechadevolucion").val("");
-			$("#id_libro_nombre").val("");
-		}
-	});
+		//limpiar la tabla
+		$("#id_table_boleta_body").empty();
+        // No limpiar la tabla antes de agregar
+        
+        
+        var jsonParam = {"idLibro": var_id, "titulo": var_titulo};
+        
+        $.ajax({
+            url: 'agregarSeleccion',
+            type: 'POST',
+            dataType: 'json',
+            data: jsonParam,
+            success: function(data) {
+                console.log(data);
+                if (data != null) {
+                	$.each(data, function(index, item){
+                    // Agregar la nueva fila sin limpiar la tabla
+                    $('#id_table_boleta_body').append("<tr><td>" + item.idLibro + "</td><td>" + item.titulo + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.idLibro + ");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
+               
+                	});
+                	} else {
+                    swal("Error al agregar la selección del libro", "", "error");
+                    return false;
+                }
+            },
+            error: function(jqXhr) {
+                swal("Error en la conexión", "", "error");
+            }
+        });
+        
+        // Limpiar las cajas de texto después de agregar
+        $("#id_libro_id").val("-1");
+        $("#id_libro_nombre").val("");
+    }
+});
 
-	
-	//Al pulsar el boton registrar
-	//Al pulsar el boton registrar
-	$("#id_btnRegistrar").click(function (){
+//Al pulsar el boton registrar
+$("#id_btnRegistrar").click(function (){
 	var var_alu = $("#id_alumno_id").val();
 	var var_idLibro = $("#id_libro_id").val();
 	var var_Libro =$("#id_libro_nombre").val("");
@@ -338,15 +349,11 @@ $("#id_btnAgregar").click(function (){
 	
 
 	
-	var var_count = 0;
-	$("#id_table_boleta_body tr").each(function() {
-		var_count = var_count + 1;
-	});
-	
+
 	if (var_alu == "-1"){
 		$("#idMensajeTexto").text("Seleccione un alumno");
 		$("#idMensaje").modal("show");
-	}else if (var_count == "-1"){
+	}else if (var_fecha_devolucion == "-1"){
 		$("#idMensajeTexto").text("Seleccione un libro");
 		$("#idMensaje").modal("show");
 	}else{
@@ -366,6 +373,7 @@ $("#id_btnAgregar").click(function (){
 					$("#id_table_boleta_body").empty();
 					$("#id_libro_id").val("-1");
 					$("#id_alumno_nombre").val("");
+				    $("#id_fechaDevolucion").val("");
 
 				}else
 					swal("Error al agregar la Boleta","","error");
@@ -378,9 +386,6 @@ $("#id_btnAgregar").click(function (){
 		   
 	}
 });
-
-
-
 
 /////////// muestra alumno
 
