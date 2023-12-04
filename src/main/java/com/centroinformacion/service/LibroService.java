@@ -38,12 +38,13 @@ public interface LibroService {
 	//consultas
 	
 	public abstract List<Libro> listaLibroDisponible(String filtro, Pageable pageable);
-
+	public abstract List<Libro> listaLibroNoDisponible(String filtro, Pageable pageable);
 	
 
 
 
 	public abstract List<Libro> listaLibro(String filtro, Pageable pageable);
+	public abstract List<Libro> listaLibros(String filtro, Pageable pageable);
 	//SIFUENTES
 	public abstract List<Autor> traerAutorDeLibro(int idLibro);
 	public abstract List<Libro> listaLibro();

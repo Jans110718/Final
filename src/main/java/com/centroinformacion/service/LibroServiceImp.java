@@ -88,7 +88,11 @@ public class LibroServiceImp implements LibroService {
 	public List<Libro> listaLibroDisponible(String filtro, Pageable pageable) {
 		return repository.listaLibroDisponible(filtro, pageable);
 	}
-	
+	@Override
+	public List<Libro> listaLibroNoDisponible(String filtro, Pageable pageable) {
+		return repository.listaLibroNoDisponible(filtro, pageable);
+	}
+
 
     //SIFUENTES
 	
@@ -121,5 +125,13 @@ public class LibroServiceImp implements LibroService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Libro> listaLibros(String filtro, Pageable pageable) {
+		return repository.listaLibros(filtro, pageable);
+	}
+
+	
+	
 
 }

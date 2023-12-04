@@ -5,11 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.centroinformacion.entity.DataCatalogo;
 import com.centroinformacion.entity.Devolucion;
+import com.centroinformacion.entity.DevolucionHasLibro;
 import com.centroinformacion.entity.Libro;
+import com.centroinformacion.repository.DevolucionHasLibroRepository;
 import com.centroinformacion.repository.DevolucionRepository;
 import com.centroinformacion.repository.LibroRepository;
 
+import jakarta.transaction.Transactional;
 @Service
 public class DevolucionServiceImp implements DevolucionService {
 
@@ -17,24 +21,25 @@ public class DevolucionServiceImp implements DevolucionService {
     private DevolucionRepository devolucionRepository;
     @Autowired
     private LibroRepository libroRepository;
-    @Override
-    public List<Devolucion> listaDevoluciones() {
-        return devolucionRepository.findAll();
-    }
+    @Autowired
+	private DevolucionHasLibroRepository devolucionHasLibroRepository;
+	@Override
+	@Transactional
+	public Devolucion insertaDevolucion(Devolucion obj) {
+		Devolucion objCabecera = devolucionRepository.save(obj);
 
-    @Override
-    public Devolucion obtenerDevolucionPorId(int id) {
-        return devolucionRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Devolucion guardarDevolucion(Devolucion devolucion) {
-        return devolucionRepository.save(devolucion);
-    }
-
-    @Override
-    public List<Libro> findLibrosByAlumnoId(int idAlumno) {
-        // Llamar al método en LibroRepository
-        return libroRepository.ListaLibrosDeAlumnoId(idAlumno);
-    }
+	    Libro objLibro = null;
+			DataCatalogo objDataCatalogo = new DataCatalogo();
+			objDataCatalogo.setIdDataCatalogo(26);
+			
+			for (DevolucionHasLibro detalle: obj.getDetallesDevolucion()) {
+				detalle.getDevolucionHasLibroPK().setIdPrestamo(objCabecera.getIdDevolucion());
+				devolucionHasLibroRepository.save(detalle);
+				objLibro =libroRepository.findById(detalle.getDevolucionHasLibroPK().getIdLibro()).get();
+				objLibro.setEstadoPrestamo(objDataCatalogo);
+				libroRepository.save(objLibro);
+			}
+		    return objCabecera;
+	}
+    
 }
